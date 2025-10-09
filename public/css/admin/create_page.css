@@ -1,0 +1,57 @@
+.input-field {
+    width: 100%;
+    padding: 10px;
+    /* Kurangi padding agar lebih kecil */
+    border-radius: 6px;
+    /* Kurangi border radius */
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-field:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+}
+
+.file-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background-color: #2563eb;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #1e40af;
+    transform: scale(1.05);
+}
+
+/* Efek default */
+#drop-area {
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Efek saat gambar diseret ke dalam */
+#drop-area.drag-over {
+    background-color: rgba(59, 130, 246, 0.2);
+    /* Biru transparan */
+    border-color: #3b82f6;
+    /* Biru */
+}
+
+.error-text {
+    color: #dc2626 !important;
+    /* Warna merah */
+}
