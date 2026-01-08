@@ -215,7 +215,7 @@
             <div class="video-row">
                 <!-- Video 1 -->
                 <div class="video-item fade-up">
-                    <video autoplay muted loop playsinline controls preload="auto">
+                    <video controls>
                         <source src="{{ asset('images/profil_padukuhan_boyong.mp4') }}" type="video/mp4">
                         Browser Anda tidak mendukung video ini.
                     </video>
@@ -230,7 +230,7 @@
 
                 <!-- Video 2 -->
                 <div class="video-item fade-up">
-                    <video autoplay muted loop playsinline controls preload="auto">
+                    <video controls>
                         <source src="{{ asset('images/pengolahan_susu.mp4') }}" type="video/mp4">
                         Browser Anda tidak mendukung video ini.
                     </video>
@@ -388,7 +388,7 @@
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-center">
+            <div>
                 {{ $produks->links() }}
             </div>
         </div>

@@ -266,8 +266,19 @@
 
 /* Modal Styling - Elegant & Professional Horizontal Layout */
 .modal-dialog {
-    max-width: 1000px;
-    margin: 1.75rem auto;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 3.5rem);
+}
+
+.modal.fade .modal-dialog {
+    transform: translate(0, 0);
+}
+
+.modal.show .modal-dialog {
+    transform: translate(0, 0);
 }
 
 .modal-content {
@@ -296,14 +307,12 @@
 }
 
 .modal-header .btn-close {
-    opacity: 1;
+    opacity: 0.8;
     transition: all var(--transition-base);
-    filter: brightness(0) saturate(100%);
-    background: transparent;
 }
 
 .modal-header .btn-close:hover {
-    opacity: 0.7;
+    opacity: 1;
     transform: scale(1.1) rotate(90deg);
 }
 
@@ -454,8 +463,12 @@
 }
 
 .product-description h5::before {
-    content: '�';
-    font-size: 1.3rem;
+    content: '\f15c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 0.5rem;
+    color: var(--color-primary);
+    font-size: 0.9rem;
 }
 
 .product-description p {
