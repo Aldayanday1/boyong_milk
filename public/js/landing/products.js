@@ -48,10 +48,10 @@ function showDetail(productId) {
             const statusClass = data.status_produk.toLowerCase().replace('_', '-');
             const statusText = data.status_produk.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
             
-            // Create modal content with premium design
+            // Create modal content with horizontal layout design
             const modalContent = `
-                <div class="row">
-                    <div class="col-md-5 mb-4 mb-md-0">
+                <div class="row g-0">
+                    <div class="col-md-6">
                         <div class="modal-image-wrapper">
                             <img src="/storage/${data.gambar}" 
                                  alt="${data.nama}" 
@@ -61,8 +61,8 @@ function showDetail(productId) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <div class="product-info">
+                    <div class="col-md-6">
+                        <div class="modal-info-section">
                             <div class="product-details">
                                 <div class="product-detail-item">
                                     <div class="product-detail-icon">
@@ -142,7 +142,7 @@ function showDetail(productId) {
                             </div>
                             ` : ''}
                             
-                            <div class="modal-footer">
+                            <div class="modal-footer mt-auto">
                                 <a href="https://wa.me/6285642595771?text=Halo,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(data.nama)}" 
                                    target="_blank" 
                                    class="modal-cta-button">
