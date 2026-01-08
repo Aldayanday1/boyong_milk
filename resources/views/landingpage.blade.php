@@ -412,42 +412,118 @@
 
     <!-- CTA Section -->
     <section class="cta-section" id="kontak">
-        <div class="container">
-            <!-- Centered white card over the blue background -->
-            <div class="cta-card fade-up" role="region" aria-labelledby="ctaTitle">
-                <div class="cta-card-inner">
-                    <div class="cta-card-icon">
-                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        <div class="cta-container">
+            <!-- Left Content -->
+            <div class="cta-left fade-up">
+                <div class="cta-eyebrow">
+                    <span class="cta-eyebrow-dot"></span>
+                    <span class="cta-eyebrow-text">Mari Berkolaborasi</span>
+                </div>
+
+                <h2 class="cta-heading">
+                    Siap Merasakan
+                    <span class="cta-heading-gradient">Kesegaran Alami?</span>
+                </h2>
+
+                <p class="cta-subtext">
+                    Hubungi kami sekarang untuk pemesanan atau konsultasi produk.
+                    Tim kami siap melayani dengan ramah dan profesional.
+                </p>
+
+                <div class="cta-stats">
+                    <div class="cta-stat-item">
+                        <div class="cta-stat-number">365</div>
+                        <div class="cta-stat-label">Hari Operasional</div>
+                    </div>
+                    <div class="cta-stat-divider"></div>
+                    <div class="cta-stat-item">
+                        <div class="cta-stat-number">24/7</div>
+                        <div class="cta-stat-label">Layanan Siap</div>
+                    </div>
+                    <div class="cta-stat-divider"></div>
+                    <div class="cta-stat-item">
+                        <div class="cta-stat-number">100%</div>
+                        <div class="cta-stat-label">Produk Segar</div>
+                    </div>
+                </div>
+
+                <div class="cta-trust-badges">
+                    <div class="cta-trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Kualitas Terjamin</span>
+                    </div>
+                    <div class="cta-trust-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Pengiriman Cepat</span>
+                    </div>
+                    <div class="cta-trust-item">
+                        <i class="fas fa-award"></i>
+                        <span>Produk Lokal Terbaik</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Contact Card -->
+            <div class="cta-right fade-up">
+                <div class="cta-card">
+                    <div class="cta-card-header">
+                        <div class="cta-card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="cta-card-title">Hubungi Kami</h3>
+                        <p class="cta-card-subtitle">Pilih cara yang paling nyaman untuk Anda</p>
                     </div>
 
                     <div class="cta-card-body">
-                        <h2 id="ctaTitle" class="cta-card-title">Tertarik dengan Produk Kami?</h2>
-                        <p class="cta-card-text">Jika Anda ingin memesan atau ada pertanyaan, hubungi tim kami. Kami
-                            siap membantu dengan pesanan dan layanan pengiriman.</p>
-
-                        <div class="cta-actions">
-                            <a href="https://wa.me/6285642595771" target="_blank" class="cta-button">
+                        <a href="https://wa.me/6285642595771?text=Halo,%20saya%20tertarik%20dengan%20produk%20Boyong%20Milk"
+                            target="_blank" class="cta-contact-btn cta-contact-whatsapp">
+                            <div class="cta-contact-btn-icon">
                                 <i class="fa-brands fa-whatsapp"></i>
-                                Hubungi Kami
-                            </a>
-                        </div>
+                            </div>
+                            <div class="cta-contact-btn-content">
+                                <span class="cta-contact-btn-label">WhatsApp</span>
+                                <span class="cta-contact-btn-value">+62 856-4259-5771</span>
+                            </div>
+                            <i class="fas fa-arrow-right cta-contact-btn-arrow"></i>
+                        </a>
 
-                        <ul class="cta-services" aria-hidden="false">
-                            <li class="cta-service">
-                                <i class="fa-solid fa-truck"></i>
-                                <span>Pengiriman Cepat</span>
-                            </li>
-                            <li class="cta-service">
-                                <i class="fa-solid fa-badge-check"></i>
-                                <span>Produk Terjamin</span>
-                            </li>
-                            <li class="cta-service">
-                                <i class="fa-solid fa-phone"></i>
-                                <span>Layanan Pelanggan</span>
-                            </li>
-                        </ul>
+                        <a href="tel:+6285642595771" class="cta-contact-btn cta-contact-phone">
+                            <div class="cta-contact-btn-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="cta-contact-btn-content">
+                                <span class="cta-contact-btn-label">Telepon</span>
+                                <span class="cta-contact-btn-value">+62 856-4259-5771</span>
+                            </div>
+                            <i class="fas fa-arrow-right cta-contact-btn-arrow"></i>
+                        </a>
+
+                        <a href="mailto:win.are.one@gmail.com" class="cta-contact-btn cta-contact-email">
+                            <div class="cta-contact-btn-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="cta-contact-btn-content">
+                                <span class="cta-contact-btn-label">Email</span>
+                                <span class="cta-contact-btn-value">win.are.one@gmail.com</span>
+                            </div>
+                            <i class="fas fa-arrow-right cta-contact-btn-arrow"></i>
+                        </a>
+                    </div>
+
+                    <div class="cta-card-footer">
+                        <div class="cta-card-footer-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="cta-card-footer-text">
+                            <strong>Waktu Operasional</strong>
+                            <span>Senin - Minggu: 07.00 - 20.00 WIB</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Decorative Elements -->
+                <div class="cta-decoration cta-decoration-1"></div>
+                <div class="cta-decoration cta-decoration-2"></div>
             </div>
         </div>
     </section>

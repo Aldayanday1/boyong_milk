@@ -57,73 +57,73 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // === Scroll to Top Button ===
-    const scrollToTop = document.createElement('button');
-    scrollToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    scrollToTop.className = 'scroll-to-top';
-    scrollToTop.setAttribute('aria-label', 'Scroll to top');
+    // const scrollToTop = document.createElement('button');
+    // scrollToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    // scrollToTop.className = 'scroll-to-top';
+    // scrollToTop.setAttribute('aria-label', 'Scroll to top');
     
-    // Add styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .scroll-to-top {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.25rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-xl);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
+    // // Add styles
+    // const style = document.createElement('style');
+    // style.textContent = `
+    //     .scroll-to-top {
+    //         position: fixed;
+    //         bottom: 100px;
+    //         right: 30px;
+    //         width: 50px;
+    //         height: 50px;
+    //         background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    //         color: white;
+    //         border: none;
+    //         border-radius: 50%;
+    //         font-size: 1.25rem;
+    //         cursor: pointer;
+    //         box-shadow: var(--shadow-xl);
+    //         opacity: 0;
+    //         visibility: hidden;
+    //         transition: all 0.3s ease;
+    //         z-index: 999;
+    //     }
         
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+    //     .scroll-to-top.visible {
+    //         opacity: 1;
+    //         visibility: visible;
+    //     }
         
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
-        }
+    //     .scroll-to-top:hover {
+    //         transform: translateY(-5px);
+    //         box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+    //     }
         
-        @media (max-width: 768px) {
-            .scroll-to-top {
-                width: 45px;
-                height: 45px;
-                bottom: 90px;
-                right: 20px;
-                font-size: 1.1rem;
-            }
-        }
-    `;
+    //     @media (max-width: 768px) {
+    //         .scroll-to-top {
+    //             width: 45px;
+    //             height: 45px;
+    //             bottom: 90px;
+    //             right: 20px;
+    //             font-size: 1.1rem;
+    //         }
+    //     }
+    // `;
     
-    document.head.appendChild(style);
-    document.body.appendChild(scrollToTop);
+    // document.head.appendChild(style);
+    // document.body.appendChild(scrollToTop);
     
-    // Show/hide scroll to top button
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            scrollToTop.classList.add('visible');
-        } else {
-            scrollToTop.classList.remove('visible');
-        }
-    });
+    // // Show/hide scroll to top button
+    // window.addEventListener('scroll', () => {
+    //     if (window.scrollY > 500) {
+    //         scrollToTop.classList.add('visible');
+    //     } else {
+    //         scrollToTop.classList.remove('visible');
+    //     }
+    // });
     
-    // Scroll to top functionality
-    scrollToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+    // // Scroll to top functionality
+    // scrollToTop.addEventListener('click', () => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         behavior: 'smooth'
+    //     });
+    // });
     
     // === Video behavior: do not autoplay/pause programmatically ===
     // Keep native controls and allow users to play/pause manually.
