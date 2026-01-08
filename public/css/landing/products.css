@@ -694,8 +694,8 @@
 }
 
 .cta-card-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     border-radius: var(--radius-xl);
     display: flex;
@@ -703,12 +703,26 @@
     justify-content: center;
     margin: 0 auto var(--spacing-md);
     margin-bottom: 3rem;
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+    animation: iconPulse 3s ease-in-out infinite;
 }
 
 .cta-card-icon i {
-    font-size: 2rem;
+    font-size: 2.75rem;
     color: #ffffff;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    font-weight: 900;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(37, 99, 235, 0.5);
+    }
 }
 
 .cta-card-title {
