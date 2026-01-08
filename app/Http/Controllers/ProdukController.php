@@ -12,8 +12,8 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        // $produks = Produk::all(); // Ambil semua produk
-        $produks = Produk::paginate(6); // Ambil 5 produk per halaman
+        // Get products with pagination for landing page
+        $produks = Produk::orderBy('created_at', 'desc')->paginate(6);
         return view('landingpage', compact('produks'));
     }
 

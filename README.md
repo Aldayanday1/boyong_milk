@@ -66,7 +66,7 @@
 ### 🔐 Dashboard Admin
 
 <p align="center">
-  <img src="public/images/full_ss_admin.png" alt="Dashboard" width="700" style="border-radius: 10px;"/>
+  <img src="public/images/image.png" alt="Dashboard" width="700" style="border-radius: 10px;"/>
 </p>
 
 **Fitur CRUD Lengkap:**

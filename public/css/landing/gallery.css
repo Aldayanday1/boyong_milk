@@ -1,0 +1,261 @@
+/* ========================================
+   GALLERY SECTION - Modern Mosaic Layout
+   ======================================== */
+
+.gallery-section {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-section::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.04), transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.gallery-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.gallery-header h2 {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    display: inline-block;
+}
+
+.gallery-header h2::before {
+    /* content: '📸'; */
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+.gallery-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    border-radius: var(--radius-full);
+}
+
+.gallery-header p {
+    font-size: var(--text-lg);
+    color: var(--color-gray);
+    max-width: 700px;
+    margin: var(--spacing-lg) auto 0;
+    line-height: 1.8;
+}
+
+/* Gallery Grid - Mosaic Layout */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(31, 41, 55, 0.08);
+    transition: all var(--transition-base);
+    border: 1px solid rgba(37, 99, 235, 0.06);
+    background: var(--color-white);
+}
+
+/* Mosaic Pattern - Different Sizes */
+.gallery-item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.gallery-item:nth-child(2) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.gallery-item:nth-child(3) {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.gallery-item:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.gallery-item:nth-child(5) {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.gallery-item:nth-child(6) {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.gallery-item:nth-child(7) {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.15);
+    z-index: 10;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15);
+}
+
+/* Overlay with Icon Badge */
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(37, 99, 235, 0.1) 0%,
+            rgba(0, 0, 0, 0.4) 40%,
+            rgba(0, 0, 0, 0.9) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-left: auto;
+    transform: scale(0.8) rotate(-10deg);
+    transition: all var(--transition-base);
+}
+
+.gallery-item:hover .gallery-overlay-icon {
+    transform: scale(1) rotate(0deg);
+}
+
+.gallery-overlay-content {
+    transform: translateY(20px);
+    transition: transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-overlay-content {
+    transform: translateY(0);
+}
+
+.gallery-overlay h4 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 0.5rem;
+}
+
+.gallery-overlay p {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+
+    .gallery-item:first-child,
+    .gallery-item:nth-child(4) {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-header h2 {
+        font-size: var(--text-3xl);
+    }
+
+    .gallery-header p {
+        font-size: var(--text-base);
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .gallery-item {
+        aspect-ratio: 16/10;
+    }
+
+    .gallery-overlay {
+        opacity: 1;
+        background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .gallery-overlay h4,
+    .gallery-overlay p {
+        transform: translateY(0);
+    }
+}

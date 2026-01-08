@@ -1,227 +1,386 @@
-<!-- resources/views/welcome.blade.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Padukuhan Boyong Milk</title>
+    <meta name="description"
+        content="Boyong Milk - Produk susu segar berkualitas tinggi dari Padukuhan Boyong, Hargobinangun, Sleman, DIY">
+    <meta name="keywords" content="boyong milk, susu segar, susu kambing, es krim, padukuhan boyong, sleman">
+    <meta name="author" content="KKN REGULER 090 UMY">
+    <title>Boyong Milk - Produk Susu Berkualitas dari Padukuhan Boyong</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo_boyong.png') }}">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Boxicons for Social Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="{{ asset('css/landing/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/hero.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/gallery.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/products.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/footer.css') }}">
 
     @vite('resources/css/app.css')
 </head>
 
 <body>
-    <header class="header">
-        <a href="#" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-            <img src="{{ asset('images/logo_boyong.png') }}" alt="Boyong Milk Logo"
-                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.2); margin-right: 10px;">
-            <span style="color: #fff; font-size: 1.6rem; font-weight: 700;">Boyong</span>
-        </a>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
 
-        <input type="checkbox" id="check">
-        <label for="check" class="icons">
-            <i class='bx bx-menu' id="menu-icon"></i>
-            <i class='bx bx-x' id="close-icon"></i>
-        </label>
-
-        <nav class="navbar">
-            <a href="#home" style="--i:0">Home</a>
-            <a href="#tentang" style="--i:1">Tentang</a>
-            <a href="#galeri" style="--i:2">Galeri</a>
-            <a href="#produk" style="--i:4">Produk</a>
-            <a href="#kontak" style="--i:5">Kontak</a>
-
-            <!-- Tombol Login -->
-            <a href="{{ route('login') }}" class="login-btn" style="--i:6">
-                Log in
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-brand">
+                <img src="{{ asset('images/logo_boyong.png') }}" alt="Boyong Milk Logo" class="nav-brand-logo">
+                <span class="nav-brand-text">Boyong Milk</span>
             </a>
-        </nav>
-    </header>
 
-    <!-- INTRO CONTAINER -->
-    <section class="intro-container" id="home">
-        <div class="intro-text">
-            <h1>Boyong Milk</h1>
-            <p>Padukuhan Boyong, Hargobinangun, Sleman, DIY</p>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#tentang" class="nav-link">Tentang</a></li>
+                <li class="nav-item"><a href="#galeri" class="nav-link">Galeri</a></li>
+                <li class="nav-item"><a href="#produk" class="nav-link">Produk</a></li>
+                <li class="nav-item"><a href="#kontak" class="nav-link">Kontak</a></li>
+                <li class="nav-item">
+                    <a href="{{ route('login') }}" class="nav-login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                </li>
+            </ul>
+
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-container">
+            <!-- Left: Content -->
+            <div class="hero-content">
+                <div class="hero-badge fade-up">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Padukuhan Boyong, Sleman, DIY</span>
+                </div>
+
+                <h1 class="hero-title fade-up">
+                    Susu Segar <span class="hero-title-highlight">Berkualitas</span><br>
+                    Dari Padukuhan Boyong
+                </h1>
+
+                <p class="hero-subtitle fade-up">
+                    Nikmati kesegaran susu dan es krim berkualitas tinggi yang diproduksi langsung dari peternakan lokal
+                    kami. 100% segar, alami, dan bergizi untuk keluarga Indonesia.
+                </p>
+
+                <div class="hero-cta fade-up">
+                    <a href="#produk" class="hero-btn hero-btn-primary">
+                        <span>Lihat Produk</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#tentang" class="hero-btn hero-btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Tentang Kami</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Visual with Floating Cards -->
+            <div class="hero-visual fade-up">
+                <!-- Background Cow Image -->
+                <div class="hero-cow-bg">
+                    <img src="{{ asset('images/bg-landing-shepi.jpeg') }}" alt="Sapi Boyong">
+                </div>
+
+                <!-- Main Product Image -->
+                <div class="hero-image">
+                    <img src="{{ asset('images/milk-2.jpeg') }}" alt="Produk Boyong Milk">
+                </div>
+
+                <!-- Floating Cards -->
+                <div class="hero-floating-card card-1">
+                    <div class="hero-card-icon blue">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="hero-card-content">
+                        <h4>100% Segar</h4>
+                        <p>Kualitas Terjamin</p>
+                    </div>
+                </div>
+
+                <div class="hero-floating-card card-2">
+                    <div class="hero-card-icon green">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="hero-card-content">
+                        <h4>Alami</h4>
+                        <p>Tanpa Pengawet</p>
+                    </div>
+                </div>
+
+                <div class="hero-floating-card card-3">
+                    <div class="hero-card-icon orange">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="hero-card-content">
+                        <h4>Produk Lokal</h4>
+                        <p>Langsung dari Boyong</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <div class="hero-scroll-indicator">
+                <div class="hero-scroll-dot"></div>
+            </div>
         </div>
     </section>
 
-    <!-- PROFILE SECTION -->
-    <section class="profile-section" id="tentang">
-        <div class="profile-container">
-            <div class="profile-content">
-                <!-- Bagian teks -->
-                <div class="profile-text">
+    <!-- About Section -->
+    <section class="about-section section" id="tentang">
+        <div class="about-container">
+            <div class="about-content">
+                <!-- Text Content -->
+                <div class="about-text">
                     <h2 class="fade-up">Profil Padukuhan Boyong</h2>
-                    <p class="fade-up">Boyong adalah Padukuhan yang terletak di Kalurahan Hargobinangun, Sleman, DIY.
+                    <p class="fade-up">
+                        Boyong adalah Padukuhan yang terletak di Kalurahan Hargobinangun, Sleman, DIY.
                         Dikenal sebagai daerah peternakan sapi perah dan kambing perah yang menghasilkan susu
-                        berkualitas tinggi,
-                        masyarakat di sini mengembangkan peternakan secara berkelanjutan dengan dukungan Koperasi
-                        Pemasaran Boyong Sari Mulya,
-                        yang menaungi dan mewadahi para peternak dalam pengelolaan usaha mereka.</p>
+                        berkualitas tinggi, masyarakat di sini mengembangkan peternakan secara berkelanjutan dengan
+                        dukungan Koperasi Pemasaran Boyong Sari Mulya, yang menaungi dan mewadahi para peternak
+                        dalam pengelolaan usaha mereka.
+                    </p>
+
+                    <!-- Statistics -->
+                    <div class="about-stats">
+                        <div class="about-stat fade-up">
+                            <span class="about-stat-number">2</span>
+                            <span class="about-stat-label">Jenis Susu</span>
+                        </div>
+                        <div class="about-stat fade-up">
+                            <span class="about-stat-number">1</span>
+                            <span class="about-stat-label">Koperasi</span>
+                        </div>
+                        <div class="about-stat fade-up">
+                            <span class="about-stat-number percent">100</span>
+                            <span class="about-stat-label">Lokal & Segar</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Gambar profil -->
-                <div class="profile-image fade-up">
-                    <img src="{{ asset('images/profil_padukuhan_boyong.jpeg') }}" alt="Padukuhan Boyong">
+                <!-- Image -->
+                <div class="about-image fade-up">
+                    <img src="{{ asset('images/profil_padukuhan_boyong.jpeg') }}" alt="Padukuhan Boyong"
+                        class="about-image-main">
+                    <div class="about-image-decorator"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- VIDEO SECTION -->
-    <section class="video-section">
+    <!-- Video Section -->
+    <section class="video-section section">
         <div class="video-container">
             <h2 class="fade-up">Kehidupan di Padukuhan Boyong</h2>
-            <br>
-            <p class="fade-up">Berikut beberapa cuplikan kegiatan di Padukuhan Boyong, termasuk kehidupan masyarakat
-                serta proses pengolahan susu dan es krim menjadi produk olahan.</p>
-            <br>
+            <p class="fade-up">
+                Berikut beberapa cuplikan kegiatan di Padukuhan Boyong, termasuk kehidupan masyarakat
+                serta proses pengolahan susu dan es krim menjadi produk olahan.
+            </p>
+
             <div class="video-row">
-                <!-- Video 1: Profil Dusun Padukuhan Boyong -->
+                <!-- Video 1 -->
                 <div class="video-item fade-up">
-                    <video controls>
+                    <video autoplay muted loop playsinline controls preload="auto">
                         <source src="{{ asset('images/profil_padukuhan_boyong.mp4') }}" type="video/mp4">
                         Browser Anda tidak mendukung video ini.
                     </video>
-                    <br>
-                    <p>Profil Dusun Padukuhan Boyong</p>
+                    <div class="video-item-overlay"></div>
+                    <div class="video-item-caption">
+                        <div class="video-item-icon">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <p>Profil Dusun Padukuhan Boyong</p>
+                    </div>
                 </div>
 
-                <!-- Video 2: Pengolahan Susu & Es Krim Menjadi Produk Olahan -->
+                <!-- Video 2 -->
                 <div class="video-item fade-up">
-                    <video controls>
+                    <video autoplay muted loop playsinline controls preload="auto">
                         <source src="{{ asset('images/pengolahan_susu.mp4') }}" type="video/mp4">
                         Browser Anda tidak mendukung video ini.
                     </video>
-                    <br>
-                    <p>Proses Pengolahan Susu & Es Krim</p>
+                    <div class="video-item-overlay"></div>
+                    <div class="video-item-caption">
+                        <div class="video-item-icon">
+                            <i class="fa-solid fa-industry"></i>
+                        </div>
+                        <p>Proses Pengolahan Susu & Es Krim</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROFILE SECTION PICTURE -->
-    <section class="profile-section-2" id="galeri">
-        <div class="profile-container-2">
-            <div class="profile-content-2">
-                <!-- Bagian teks -->
-                <div class="profile-text-2">
-                    <h2 class="fade-up">Galeri Produk</h2>
-                    <p class="fade-up">Padukuhan Boyong memiliki beragam produk olahan susu berkualitas yang dihasilkan
-                        dari peternakan lokal. Berikut adalah beberapa produk unggulan terbaru kami yang siap dinikmati
-                        oleh pelanggan.</p>
+    <!-- Gallery Section -->
+    <section class="gallery-section section" id="galeri">
+        <div class="gallery-container">
+            <div class="gallery-header">
+                <h2 class="fade-up">Galeri Produk Kami</h2>
+                <p class="fade-up">
+                    Padukuhan Boyong memiliki beragam produk olahan susu berkualitas yang dihasilkan
+                    dari peternakan lokal. Berikut adalah beberapa produk unggulan terbaru kami.
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item fade-up">
+                    <img src="{{ asset('images/shepi-1.jpeg') }}" alt="Peternakan Sapi Boyong">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">
+                            <i class="fa-solid fa-cow"></i>
+                        </div>
+                        <div class="gallery-overlay-content">
+                            <h4>Peternakan Sapi</h4>
+                            <p>Sapi berkualitas dari Padukuhan Boyong</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-up">
+                    <img src="{{ asset('images/milk-2.jpeg') }}" alt="Susu Segar">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">
+                            <i class="fa-solid fa-bottle-droplet"></i>
+                        </div>
+                        <div class="gallery-overlay-content">
+                            <h4>Susu Segar</h4>
+                            <p>100% segar dan alami</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-up">
+                    <img src="{{ asset('images/shepi-2.jpeg') }}" alt="Kambing Perah">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <div class="gallery-overlay-content">
+                            <h4>Kambing Perah</h4>
+                            <p>Sumber susu kambing berkualitas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-up">
+                    <img src="{{ asset('images/eskrim-3.jpeg') }}" alt="Produk Es Krim">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">
+                            <i class="fa-solid fa-ice-cream"></i>
+                        </div>
+                        <div class="gallery-overlay-content">
+                            <h4>Varian Es Krim</h4>
+                            <p>Berbagai pilihan menarik</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-up">
+                    <img src="{{ asset('images/pengolahan-1.jpeg') }}" alt="Proses Pengolahan">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <div class="gallery-overlay-content">
+                            <h4>Proses Pengolahan</h4>
+                            <p>Standar kebersihan tinggi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-up">
+                    <img src="{{ asset('images/eskrim-1.jpeg') }}" alt="Es Krim Boyong">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-icon">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div class="gallery-overlay-content">
+                            <h4>Es Krim Premium</h4>
+                            <p>Rasa yang menggugah selera</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ANIMATION SLIDE PICTURE -->
-    <section class="cow-section">
-        <div class="cow__wrapper-1">
-            <div class="cow__images fade-up">
-                <img src="{{ asset('images/shepi-1.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/milk-2.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/shepi-2.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/eskrim-3.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/pengolahan-1.jpeg') }}" alt="cow">
-
-                <!-- DUPLIKASI GAMBAR UNTUK LOOP INFINITE -->
-                <img src="{{ asset('images/milk-3.png') }}" alt="cow">
-                <img src="{{ asset('images/pengolahan-2.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/eskrim-1.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/milk-1.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/eskrim-2.jpeg') }}" alt="cow">
-            </div>
-        </div>
-
-        <div class="cow__wrapper-2">
-            <div class="cow__images fade-up">
-                <!-- DUPLIKASI GAMBAR UNTUK LOOP INFINITE -->
-                <img src="{{ asset('images/eskrim-2.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/milk-1.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/eskrim-1.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/pengolahan-2.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/milk-3.png') }}" alt="cow">
-
-                <img src="{{ asset('images/pengolahan-1.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/eskrim-3.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/shepi-2.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/milk-2.jpeg') }}" alt="cow">
-                <img src="{{ asset('images/shepi-1.jpeg') }}" alt="cow">
-            </div>
-        </div>
-    </section>
-
-    <!-- PROFILE SECTION -->
-    <section class="profile-section-3" id="produk">
-        <div class="profile-container-3">
-            <div class="profile-content-3">
-                <!-- Gambar profil (utama + tambahan kecil) -->
-                <div class="profile-image-3 fade-up">
-                    <img class="main-image" src="{{ asset('images/milk-2.jpeg') }}" alt="Padukuhan Boyong">
-                    <img class="overlay-image" src="{{ asset('images/milk-3.png') }}" alt="Produk Susu">
-                </div>
-
-                <!-- Bagian teks -->
-                <div class="profile-text-3">
-                    <h1 class="fade-up">Produk Kami</h1>
-                    <p class="fade-up">Kami menghadirkan berbagai produk olahan susu berkualitas tinggi dari sapi perah
-                        dan kambing perah
-                        terbaik di Padukuhan Boyong. Susu Segar (Fresh Milk), Susu Pasteurisasi, dan Eskrim Susu adalah
-                        beberapa produk
-                        unggulan
-                        kami yang dihasilkan dengan standar kebersihan dan kualitas tinggi.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUK SECTION -->
-    <section class="produk-section">
+    <!-- Product Section -->
+    <section class="produk-section section" id="produk">
         <div class="container">
+            <div class="produk-header">
+                <h2 class="fade-up">Produk Kami</h2>
+                <p class="fade-up">
+                    Kami menghadirkan berbagai produk olahan susu berkualitas tinggi dari sapi perah
+                    dan kambing perah terbaik di Padukuhan Boyong.
+                </p>
+            </div>
+
             <div class="row">
                 @foreach ($produks as $produk)
-                    <div class="mb-4 col-md-4">
-                        <div class="card produk-card fade-up" onclick="showDetail('{{ $produk->id }}')">
-                            <img src="{{ asset('storage/' . $produk->gambar) }}" class="card-img-top"
-                                alt="{{ $produk->nama }}">
+                    <div class="col-md-4 mb-4">
+                        <div class="produk-card fade-up" onclick="showDetail('{{ $produk->id }}')">
+                            <div class="produk-card-image-wrapper">
+                                <img src="{{ asset('storage/' . $produk->gambar) }}" class="card-img-top"
+                                    alt="{{ $produk->nama }}">
+                                <div class="produk-card-overlay">
+                                    <div class="produk-card-view-icon">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    {{ $produk->nama }}
-                                </h5>
-                                <p class="card-text">
-                                    <i class="fa-solid fa-tag"></i> Rp
-                                    {{ number_format($produk->harga, 0, ',', '.') }}
-                                </p>
-                                <p class="card-text">
-                                    <i class="fa-solid fa-list"></i> Kategori : {{ ucfirst($produk->kategori) }}
-                                </p>
-                                {{-- <p class="card-text">
-                                    <i class="fa-solid fa-circle-check"></i> Status :
-                                    <b>{{ ucfirst($produk->status_produk) }}</b>
-                                </p> --}}
-                                <p class="card-text">
-                                    <i class="fa-solid fa-circle-check"></i> Status :
-                                    <b class="kategori-text {{ strtolower($produk->status_produk) }}">
-                                        {{ ucfirst(str_replace('_', ' ', $produk->status_produk)) }}
-                                    </b>
-                                </p>
+                                <h5 class="card-title">{{ $produk->nama }}</h5>
+                                <div class="produk-card-divider"></div>
+                                <div class="produk-card-meta">
+                                    <p class="card-text">
+                                        <i class="fa-solid fa-tag"></i>
+                                        Rp {{ number_format($produk->harga, 0, ',', '.') }}
+                                    </p>
+                                    <p class="card-text">
+                                        <i class="fa-solid fa-list"></i>
+                                        {{ ucfirst($produk->kategori) }}
+                                    </p>
+                                    <p class="card-text">
+                                        <span class="kategori-text {{ strtolower($produk->status_produk) }}">
+                                            {{ ucfirst(str_replace('_', ' ', $produk->status_produk)) }}
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -235,16 +394,14 @@
         </div>
     </section>
 
-    <!-- MODAL DETAIL PRODUK -->
+    <!-- Modal Detail Produk -->
     <div class="modal fade" id="produkDetailModal" tabindex="-1" aria-labelledby="produkDetailModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="produkDetailModalLabel">Detail Produk</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div id="detailContent"></div>
@@ -253,27 +410,57 @@
         </div>
     </div>
 
-    <!-- CTA Sebelum Footer -->
-    <section class="cta-section">
-        <div class="container text-center" id="kontak">
-            <h2 class="cta-title fade-up">Tertarik dengan Produk Kami?</h2>
-            <p class="cta-text fade-up">
-                Jika Anda tertarik dengan produk kami atau memiliki pertanyaan lebih lanjut,
-                jangan ragu untuk menghubungi kami. Kami siap membantu Anda!
-            </p>
-            <a href="https://wa.me/6285642595771" target="_blank" class="cta-button fade-up">
-                <i class="fa-brands fa-whatsapp"></i> Hubungi Kami
-            </a>
+    <!-- CTA Section -->
+    <section class="cta-section" id="kontak">
+        <div class="container">
+            <!-- Centered white card over the blue background -->
+            <div class="cta-card fade-up" role="region" aria-labelledby="ctaTitle">
+                <div class="cta-card-inner">
+                    <div class="cta-card-icon">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="cta-card-body">
+                        <h2 id="ctaTitle" class="cta-card-title">Tertarik dengan Produk Kami?</h2>
+                        <p class="cta-card-text">Jika Anda ingin memesan atau ada pertanyaan, hubungi tim kami. Kami
+                            siap membantu dengan pesanan dan layanan pengiriman.</p>
+
+                        <div class="cta-actions">
+                            <a href="https://wa.me/6285642595771" target="_blank" class="cta-button">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                Hubungi Kami
+                            </a>
+                        </div>
+
+                        <ul class="cta-services" aria-hidden="false">
+                            <li class="cta-service">
+                                <i class="fa-solid fa-truck"></i>
+                                <span>Pengiriman Cepat</span>
+                            </li>
+                            <li class="cta-service">
+                                <i class="fa-solid fa-badge-check"></i>
+                                <span>Produk Terjamin</span>
+                            </li>
+                            <li class="cta-service">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>Layanan Pelanggan</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER PROFESIONAL -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-info fade-up">
                 <h3>Padukuhan Boyong</h3>
-                <p>Website ini dikembangkan oleh <strong>KKN REGULER 090 UMY</strong> sebagai bagian dari kontribusi
-                    untuk masyarakat.</p>
+                <p>
+                    Website ini dikembangkan oleh <strong>KKN REGULER 090 UMY</strong> sebagai bagian dari
+                    kontribusi untuk masyarakat.
+                </p>
             </div>
 
             <div class="footer-links fade-up">
@@ -298,11 +485,9 @@
                 </div>
             </div>
 
-            <!-- Kontak teknis untuk pengembang -->
             <div class="footer-support fade-up">
                 <h4>Dukungan Teknis</h4>
-                <p>Jika menemukan bug atau masalah teknis, hubungi:</p><br>
-                {{-- <p>Email: <a href="mailto:support.kkn090@umy.ac.id">support.kkn090@umy.ac.id</a></p> --}}
+                <p>Jika menemukan bug atau masalah teknis, hubungi:</p>
                 <p>Email: <a href="mailto:kkn90umyogya@gmail.com">kkn90umyogya@gmail.com</a></p>
                 <p>WhatsApp: <a href="https://wa.me/6285184541785" target="_blank">+62 851-8454-1785</a></p>
             </div>
@@ -318,74 +503,15 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    {{-- <script src="https://unpkg.com/scrollreveal"></script> --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const elements = document.querySelectorAll(".fade-up");
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-            const observer = new IntersectionObserver(
-                function(entries) {
-                    entries.forEach((entry, index) => {
-                        if (entry.isIntersecting) {
-                            setTimeout(() => {
-                                entry.target.classList.add("visible");
-                            }, index * 300); // Delay bertahap: h2 → p → img
-                            observer.unobserve(entry.target); // Hanya animasi 1x
-                        }
-                    });
-                }, {
-                    threshold: 0.2
-                }
-            );
+    <!-- GSAP for Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-            elements.forEach(el => observer.observe(el));
-
-            // Pastikan animasi slide tetap berjalan meskipun belum terlihat
-            document.querySelectorAll(".cow__images").forEach(el => {
-                el.classList.add("visible");
-            });
-        });
-
-        // --------- SHOW MODAL ---------
-
-        function showDetail(produkId) {
-            fetch(`/produk/${produkId}`)
-                .then(response => response.json())
-                .then(data => {
-                    let content = `
-    <div class="text-center">
-        <img src="/storage/${data.gambar}" class="rounded shadow product-image img-fluid" alt="${data.nama}">
-    </div>
-    <div class="mt-4 product-info">
-        <h4 class="mb-3 text-center">${data.nama}</h4>
-        <div class="product-details">
-            <p><strong><i class="fas fa-tag icon-blue"></i> Harga :</strong> <span class="detail-value">Rp ${data.harga.toLocaleString('id-ID')}</span></p>
-            <p><strong><i class="fas fa-boxes icon-green"></i> Stok :</strong> <span class="detail-value">${data.stok}</span></p>
-            <p><strong><i class="fas fa-th-large icon-orange"></i> Kategori :</strong> <span class="detail-value">${data.kategori}</span></p>
-            <p><strong><i class="fas fa-weight icon-purple"></i> Berat Bersih :</strong> <span class="detail-value">${data.berat_isi_bersih}</span></p>
-            <p><strong><i class="fas fa-calendar-alt icon-red"></i> Tgl Produksi :</strong> <span class="detail-value">${data.tgl_produksi}</span></p>
-            <p><strong><i class="fas fa-calendar-times icon-darkred"></i> Tgl Kadaluarsa :</strong> <span class="detail-value">${data.tgl_kadaluarsa}</span></p>
-        </div>
-        <div class="mt-4 product-description">
-            <h5 class="text-center">Deskripsi Produk</h5>
-            <p>${data.deskripsi}</p>
-        </div>
-    </div>
-    `;
-                    document.getElementById("detailContent").innerHTML = content;
-                    $('#produkDetailModal').modal('show');
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        // -------- NAVBAR CHECKED --------
-
-        document.querySelectorAll('.navbar a[href^="#"]').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('check').checked = false; // Menutup navbar setelah memilih menu
-            });
-        });
-    </script>
-</body>
-
-</html>
+    <!-- Modular JavaScript -->
+    <script src="{{ asset('js/landing/navbar.js') }}"></script>
+    <script src="{{ asset('js/landing/animations.js') }}"></script>
+    <script src="{{ asset('js/landing/products.js') }}"></script>
+    <script src="{{ asset('js/landing/main.js') }}"></script>

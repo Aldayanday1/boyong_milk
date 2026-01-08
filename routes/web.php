@@ -5,6 +5,7 @@ use App\Http\Controllers\ProdukController;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Route;
 
+// Landing Page Route - Modern Design
 Route::get('/', [ProdukController::class, 'index'])->name('landingpage');
 
 Route::middleware('auth')->group(function () {
@@ -24,6 +25,7 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('produk/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy');
 });
 
+// Detail Produk di landing page
 Route::get('/produk/{id}', function ($id) {
     $produk = Produk::findOrFail($id);
     return response()->json($produk);
