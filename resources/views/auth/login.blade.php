@@ -4,113 +4,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - Boyong Milk Admin</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('images/logo_boyong.png') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/login_page.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
-    <div class="background-overlay"></div>
-    <form method="POST" action="{{ route('login') }}" class="login-form">
-        @csrf
+    <div class="login-container">
+        <!-- Left Side - Branding -->
+        <div class="login-left">
+            <div class="login-left-content">
+                <div class="brand-logo">
+                    <img src="{{ asset('images/logo_boyong.png') }}" alt="Boyong Milk Logo">
+                </div>
 
-        @if (session('error'))
-            <!-- Memuat SweetAlert sebelum memanggil Swal.fire() -->
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script>
-                Swal.fire({
-                    title: 'Gagal!',
-                    text: "{{ session('error') }}",
-                    icon: 'error',
-                    timer: 3000,
-                    showConfirmButton: true
-                });
-            </script>
-        @endif
+                <h1 class="brand-title">Boyong Milk</h1>
+                <p class="brand-subtitle">Sistem Administrasi Produk</p>
 
-        <div class="login-header">
-            <i class="fa-solid fa-user-circle fa-3x" style="color: #0077ff;"></i>
-            <h2>Selamat Datang!</h2>
-            <p>Silahkan masuk untuk mengelola sistem administrasi.</p>
+                <div class="brand-features">
+                    <div class="brand-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Kelola Produk</h3>
+                            <p>Dashboard lengkap untuk mengelola semua produk</p>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Manajemen User</h3>
+                            <p>Kontrol akses dan hak admin dengan mudah</p>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Keamanan Terjamin</h3>
+                            <p>Sistem enkripsi dan autentikasi berlapis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brand-footer">
+                    <p>&copy; 2025 Boyong Milk. KKN REGULER 090 UMY</p>
+                </div>
+            </div>
+
+            <!-- Decorative Shapes -->
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
 
+        <!-- Right Side - Login Form -->
+        <div class="login-right">
+            <div class="login-right-content">
+                <a href="/" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Kembali ke Website</span>
+                </a>
 
-        <!-- Username -->
-        <div>
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" class="block w-full mt-1" type="text" name="username" :value="old('username')"
-                required autofocus autocomplete="username" />
-        </div>
+                <div class="login-header">
+                    <div class="login-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h2>Selamat Datang Kembali!</h2>
+                    <p>Masuk ke akun administrator Anda</p>
+                </div>
 
-        <!-- Password dengan Toggle -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <div class="relative">
-                <x-text-input id="password" class="block w-full pr-10 mt-1" type="password" name="password" required
-                    autocomplete="current-password" />
-                <!-- Eye Icon -->
-                <span class="absolute inset-y-0 flex items-center cursor-pointer right-3" onclick="togglePassword()">
-                    <i id="eyeIcon" class="text-gray-500 fa fa-eye"></i>
-                </span>
+                <form method="POST" action="{{ route('login') }}" class="login-form">
+                    @csrf
+
+                    @if (session('error'))
+                        <div class="alert-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ session('error') }}</span>
+                        </div>
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <script>
+                            Swal.fire({
+                                title: 'Gagal!',
+                                text: "{{ session('error') }}",
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: true
+                            });
+                        </script>
+                    @endif
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username" class="form-label">
+                            <i class="fas fa-user"></i>
+                            <span>Username</span>
+                        </label>
+                        <input id="username" type="text" name="username" value="{{ old('username') }}"
+                            class="form-input" placeholder="Masukkan username Anda" required autofocus
+                            autocomplete="username">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock"></i>
+                            <span>Password</span>
+                        </label>
+                        <div class="password-wrapper">
+                            <input id="password" type="password" name="password" class="form-input"
+                                placeholder="Masukkan password Anda" required autocomplete="current-password">
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i id="eyeIcon" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="form-check">
+                        <input id="remember_me" type="checkbox" name="remember" class="form-checkbox">
+                        <label for="remember_me" class="form-check-label">
+                            {{ __('Ingatkan saya selama 30 hari') }}
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-login">
+                        <span>Masuk ke Dashboard</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <div class="login-footer">
+                        <p>Lupa password? <a href="#">Hubungi Administrator</a></p>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox"
-                    class="text-indigo-600 border-gray-300 rounded shadow-sm dark:bg-gray-900 dark:border-gray-700 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
-                    name="remember">
-                <span class="text-sm text-gray-600 ms-2 dark:text-gray-400"
-                    style="font-size: 13px; position: relative; top: -1.33px;">{{ __('Ingatkan saya') }}</span>
-            </label>
-        </div>
-
-        <!-- Tombol Login dan Back -->
-        <div class="button-container">
-            <a href="/" class="back-button">Back</a>
-            <x-primary-button class="login-button">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-
-    <!-- Font Awesome untuk ikon mata -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-
-    <!-- JavaScript Toggle Password -->
+    <!-- Scripts -->
     <script>
+        // Toggle Password Visibility
         function togglePassword() {
-            var passwordField = document.getElementById("password");
-            var eyeIcon = document.getElementById("eyeIcon");
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
 
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                eyeIcon.classList.remove("fa-eye");
-                eyeIcon.classList.add("fa-eye-slash");
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
             } else {
-                passwordField.type = "password";
-                eyeIcon.classList.remove("fa-eye-slash");
-                eyeIcon.classList.add("fa-eye");
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
             }
         }
-    </script>
 
-    <!-- JavaScript untuk Animasi Fade-Up -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const formElement = document.querySelector(".login-form");
-
-            if (formElement) {
-                setTimeout(() => {
-                    formElement.classList.add("visible");
-                }, 300); // Delay sedikit setelah halaman dimuat
-            }
+        // Page Load Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelector('.login-left-content').classList.add('animate-in');
+                document.querySelector('.login-right-content').classList.add('animate-in');
+            }, 100);
         });
+
+        // Auto-hide alert after 5 seconds
+        const alert = document.querySelector('.alert-error');
+        if (alert) {
+            setTimeout(() => {
+                alert.style.animation = 'slideOut 0.5s ease-out forwards';
+            }, 5000);
+        }
     </script>
 </body>
 
