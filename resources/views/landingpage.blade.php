@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{ asset('css/landing/about.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing/gallery.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing/products.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/products-redesign.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing/footer.css') }}">
 
     @vite('resources/css/app.css')
@@ -352,35 +353,75 @@
 
             <div class="row">
                 @foreach ($produks as $produk)
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-6 col-lg-4 mb-4">
                         <div class="produk-card fade-up" onclick="showDetail('{{ $produk->id }}')">
-                            <div class="produk-card-image-wrapper">
-                                <img src="{{ asset('storage/' . $produk->gambar) }}" class="card-img-top"
-                                    alt="{{ $produk->nama }}">
-                                <div class="produk-card-overlay">
-                                    <div class="produk-card-view-icon">
-                                        <i class="fa-solid fa-eye"></i>
+                            <!-- Status Badge -->
+                            <span class="produk-badge {{ strtolower($produk->status_produk) }}">
+                                @if ($produk->status_produk == 'tersedia')
+                                    <i class="fas fa-check-circle"></i> Tersedia
+                                @elseif($produk->status_produk == 'habis')
+                                    <i class="fas fa-times-circle"></i> Habis
+                                @else
+                                    <i class="fas fa-clock"></i> Pre-Order
+                                @endif
+                            </span>
+
+                            <!-- Image Container -->
+                            <div class="produk-image-container">
+                                <div class="produk-image-wrapper">
+                                    <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama }}"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="produk-content">
+                                <!-- Category Badge -->
+                                <div class="produk-category">
+                                    <i class="fas fa-tag"></i>
+                                    <span>{{ ucfirst($produk->kategori) }}</span>
+                                </div>
+
+                                <!-- Title -->
+                                <h3 class="produk-title">{{ $produk->nama }}</h3>
+
+                                <!-- Description -->
+                                <p class="produk-description">{{ $produk->deskripsi }}</p>
+
+                                <!-- Details Grid -->
+                                <div class="produk-details">
+                                    <div class="produk-detail-item">
+                                        <span class="produk-detail-label">Stok</span>
+                                        <span class="produk-detail-value">
+                                            <i class="fas fa-boxes"></i>
+                                            {{ $produk->stok }} unit
+                                        </span>
+                                    </div>
+                                    <div class="produk-detail-item">
+                                        <span class="produk-detail-label">Berat</span>
+                                        <span class="produk-detail-value">
+                                            <i class="fas fa-weight"></i>
+                                            {{ $produk->berat_isi_bersih }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Price Section -->
+                                <div class="produk-price-section">
+                                    <span class="produk-price-label">Harga</span>
+                                    <div class="produk-price-value">
+                                        <span class="currency">Rp</span>
+                                        <span>{{ number_format($produk->harga, 0, ',', '.') }}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $produk->nama }}</h5>
-                                <div class="produk-card-divider"></div>
-                                <div class="produk-card-meta">
-                                    <p class="card-text">
-                                        <i class="fa-solid fa-tag"></i>
-                                        Rp {{ number_format($produk->harga, 0, ',', '.') }}
-                                    </p>
-                                    <p class="card-text">
-                                        <i class="fa-solid fa-list"></i>
-                                        {{ ucfirst($produk->kategori) }}
-                                    </p>
-                                    <p class="card-text">
-                                        <span class="kategori-text {{ strtolower($produk->status_produk) }}">
-                                            {{ ucfirst(str_replace('_', ' ', $produk->status_produk)) }}
-                                        </span>
-                                    </p>
-                                </div>
+
+                            <!-- Footer with CTA -->
+                            <div class="produk-footer">
+                                <button class="produk-btn-detail">
+                                    Detail Produk
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
                             </div>
                         </div>
                     </div>

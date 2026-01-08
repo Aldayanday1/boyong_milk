@@ -68,7 +68,323 @@
 }
 
 /* Product Card - Premium Design */
+
+/* ========================================
+   PRODUCT CARDS - Minimalist & Elegant Redesign
+   Compact, Clean, Eye-catching
+   ======================================== */
+
+.produk-card .card-body,
+.produk-card .card-title:not(.produk-title),
+.produk-card .card-text:not(.produk-price),
+.produk-card .card-img-top {
+    display: none !important;
+}
+
 .produk-card {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+}
+
+.produk-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+    border-color: #3b82f6 !important;
+}
+
+.produk-badge {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    z-index: 10 !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.produk-badge.tersedia {
+    background: rgba(16, 185, 129, 0.95) !important;
+    color: #ffffff !important;
+}
+
+.produk-badge.habis {
+    background: rgba(239, 68, 68, 0.95) !important;
+    color: #ffffff !important;
+}
+
+.produk-badge.pre_order {
+    background: rgba(251, 146, 60, 0.95) !important;
+    color: #ffffff !important;
+}
+
+.produk-image-container {
+    width: 100% !important;
+    height: 240px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%) !important;
+}
+
+.produk-image-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+.produk-image-wrapper img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.produk-card:hover .produk-image-wrapper img {
+    transform: scale(1.08) !important;
+}
+
+.produk-content {
+    padding: 18px 18px 16px 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    flex-grow: 1 !important;
+}
+
+.produk-category {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 4px 12px !important;
+    background: #eff6ff !important;
+    color: #2563eb !important;
+    border-radius: 6px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    width: fit-content !important;
+}
+
+.produk-category i {
+    font-size: 0.7rem !important;
+}
+
+.produk-title {
+    font-size: 1.125rem !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 0 4px 0 !important;
+    line-height: 1.35 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    min-height: 2.4rem !important;
+}
+
+.produk-description {
+    font-size: 0.875rem !important;
+    color: #6b7280 !important;
+    line-height: 1.45 !important;
+    margin: 0 0 6px 0 !important;
+    margin-top: -1rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    min-height: 2.2rem !important;
+    font-weight: 400 !important;
+}
+
+.produk-price-section {
+    padding-top: 12px !important;
+    border-top: 1px solid #e5e7eb !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: auto !important;
+}
+
+.produk-price-label {
+    font-size: 0.8rem !important;
+    color: #6b7280 !important;
+    font-weight: 500 !important;
+}
+
+.produk-price-value {
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    color: #059669 !important;
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 4px !important;
+}
+
+.produk-price-value .currency {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+}
+
+.produk-details {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    padding: 12px 0 !important;
+}
+
+.produk-detail-item {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.produk-detail-label {
+    font-size: 0.7rem !important;
+    color: #9ca3af !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.produk-detail-value {
+    font-size: 0.85rem !important;
+    color: #374151 !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+.produk-detail-value i {
+    font-size: 0.75rem !important;
+    color: #3b82f6 !important;
+}
+
+.produk-footer {
+    padding: 0 20px 20px !important;
+}
+
+.produk-btn-detail {
+    width: 100% !important;
+    padding: 12px 20px !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+.produk-btn-detail:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+.produk-btn-detail i {
+    transition: transform 0.3s ease !important;
+}
+
+.produk-btn-detail:hover i {
+    transform: translateX(4px) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .produk-image-container {
+        height: 200px !important;
+    }
+
+    .produk-content {
+        padding: 12px !important;
+        gap: 6px !important;
+    }
+
+    .produk-title {
+        font-size: 1rem !important;
+        min-height: 2.4rem !important;
+    }
+
+    .produk-description {
+        font-size: 0.8rem !important;
+        -webkit-line-clamp: 2 !important;
+        min-height: 1.8rem !important;
+    }
+
+    .produk-price-value {
+        font-size: 1.25rem !important;
+    }
+
+    .produk-details {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+
+    .produk-footer {
+        padding: 0 16px 16px !important;
+    }
+
+    .produk-btn-detail {
+        padding: 10px 16px !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .produk-image-container {
+        height: 180px !important;
+    }
+
+    .produk-badge {
+        top: 8px !important;
+        right: 8px !important;
+        padding: 4px 10px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+.produk-card.loading {
+    pointer-events: none !important;
+    opacity: 0.6 !important;
+}
+
+.produk-empty {
+    text-align: center !important;
+    padding: 60px 20px !important;
+    color: #6b7280 !important;
+}
+
+.produk-empty i {
+    font-size: 3rem !important;
+    color: #d1d5db !important;
+    margin-bottom: 1rem !important;
+}
+
+/* .produk-card {
     background: linear-gradient(180deg, #ffffff, #fafbfc);
     border-radius: var(--radius-2xl);
     overflow: hidden;
@@ -210,7 +526,7 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
     margin: var(--spacing-sm) 0;
-}
+} */
 
 /* Status Badge - Enhanced */
 .kategori-text {
@@ -715,10 +1031,13 @@
 }
 
 @keyframes iconPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
     }
+
     50% {
         transform: scale(1.05);
         box-shadow: 0 15px 40px rgba(37, 99, 235, 0.5);
