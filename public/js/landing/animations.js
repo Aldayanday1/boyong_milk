@@ -22,6 +22,89 @@ document.addEventListener('DOMContentLoaded', function() {
                 ease: 'power2.inOut',
                 onComplete: () => {
                     pageLoader.classList.add('hidden');
+                    // Ensure ScrollTrigger and hero animations initialize after loader is hidden
+                    // small timeout to allow DOM/reflow to settle
+                    // Wait a little longer and use rAF to ensure layout/compositing layers settle
+                    const startHeroSequence = () => {
+                        // two rAFs help ensure style/layout has settled
+                        requestAnimationFrame(() => requestAnimationFrame(() => {
+                            try {
+                                ScrollTrigger.refresh();
+                            } catch (e) {
+                                // ignore if ScrollTrigger not available
+                            }
+
+                            const heroContent = document.querySelector('.hero-content');
+                            const heroVisual = document.querySelector('.hero-visual');
+                            const heroCowBg = document.querySelector('.hero-cow-bg');
+                            const heroImage = document.querySelector('.hero-image');
+                            const floatingCards = document.querySelectorAll('.hero-floating-card');
+
+                            // ensure initial states are set on composite layer
+                            if (heroContent) {
+                                gsap.set(heroContent, { autoAlpha: 0, x: -30, force3D: true });
+                            }
+
+                            if (heroVisual) {
+                                gsap.set(heroVisual, { autoAlpha: 0, x: 30, force3D: true });
+                            }
+
+                            if (heroCowBg) {
+                                gsap.set(heroCowBg, { autoAlpha: 0, scale: 0.95, force3D: true });
+                            }
+
+                            if (heroImage) {
+                                gsap.set(heroImage, { autoAlpha: 0, scale: 0.95, force3D: true });
+                            }
+
+                            if (floatingCards && floatingCards.length > 0) {
+                                gsap.set(floatingCards, { autoAlpha: 0, y: 10, force3D: true });
+                            }
+
+                            const heroTL = gsap.timeline({ defaults: { duration: 0.85, ease: 'power3.out' } });
+
+                            // Semua elemen muncul bersamaan (left content + right visual + semua child nya)
+                            if (heroContent) {
+                                heroTL.to(heroContent, { autoAlpha: 1, x: 0 });
+                            }
+
+                            if (heroVisual) {
+                                heroTL.to(heroVisual, { autoAlpha: 1, x: 0 }, '<');
+                            }
+
+                            // bg cow, main image, dan floating cards muncul bersamaan dengan heroVisual
+                            if (heroCowBg) {
+                                heroTL.to(heroCowBg, { autoAlpha: 0.04, scale: 1, duration: 0.85, ease: 'power3.out' }, '<');
+                            }
+
+                            if (heroImage) {
+                                heroTL.to(heroImage, { autoAlpha: 1, scale: 1, duration: 0.85, ease: 'power3.out' }, '<');
+                            }
+
+                            if (floatingCards && floatingCards.length > 0) {
+                                heroTL.to(floatingCards, { autoAlpha: 1, y: 0, stagger: 0, duration: 0.85, ease: 'power3.out' }, '<');
+                            }
+
+                            // after entrance finishes, kick off the continuous floating loops
+                            heroTL.call(() => {
+                                if (floatingCards && floatingCards.length > 0) {
+                                    floatingCards.forEach((card, index) => {
+                                        gsap.to(card, {
+                                            y: -18,
+                                            duration: 2 + (index * 0.45),
+                                            ease: 'sine.inOut',
+                                            repeat: -1,
+                                            yoyo: true,
+                                            force3D: true
+                                        });
+                                    });
+                                }
+                            });
+                        }));
+                    };
+
+                    // small delay to ensure images/fonts/layout finish; 100ms is typically enough
+                    setTimeout(startHeroSequence, 100);
                 }
             });
         });
@@ -64,17 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Hero floating cards
-        const floatingCards = document.querySelectorAll('.hero-floating-card');
-        floatingCards.forEach((card, index) => {
-            gsap.to(card, {
-                y: -20,
-                duration: 2 + (index * 0.5),
-                ease: 'power1.inOut',
-                repeat: -1,
-                yoyo: true
-            });
-        });
+        // Floating loop will be started after the hero entrance timeline finishes
     }
     
     // === About Section Stats Counter ===

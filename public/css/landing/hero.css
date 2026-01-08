@@ -37,19 +37,9 @@
 /* Left Content */
 .hero-content {
     color: var(--color-dark);
-    animation: fadeInLeft 1s ease-out;
-}
-
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    opacity: 0;
+    transform: translateX(-30px);
+    will-change: transform, opacity;
 }
 
 .hero-badge {
@@ -150,19 +140,9 @@
 .hero-visual {
     position: relative;
     height: 600px;
-    animation: fadeInRight 1s ease-out;
-}
-
-@keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    opacity: 0;
+    transform: translateX(30px);
+    will-change: transform, opacity;
 }
 
 .hero-cow-bg {
@@ -172,9 +152,10 @@
     transform: translate(-50%, -50%);
     width: 120%;
     height: 120%;
-    opacity: 0.04;
+    opacity: 0;
     z-index: 0;
     filter: grayscale(40%) brightness(1.05);
+    will-change: opacity;
 }
 
 .hero-cow-bg img {
@@ -190,6 +171,8 @@
     width: 450px;
     height: 500px;
     margin: 0 auto;
+    opacity: 0;
+    will-change: opacity, transform;
 }
 
 .hero-image img {
@@ -212,20 +195,9 @@
     border-radius: var(--radius-xl);
     box-shadow: 0 8px 20px rgba(31, 41, 55, 0.08);
     z-index: 2;
-    animation: float 3s ease-in-out infinite;
     border: 1px solid rgba(37, 99, 235, 0.06);
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
+    opacity: 0;
+    will-change: transform, opacity;
 }
 
 .hero-floating-card.card-1 {
