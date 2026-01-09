@@ -2,6 +2,16 @@
    PRODUCT SECTION - Premium Card Design & Modern Modal
    ======================================== */
 
+/* Fix modal scrollbar shift */
+html {
+    overflow-y: scroll !important;
+}
+
+body.modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+}
+
 .produk-section {
     padding: var(--spacing-3xl) 0;
     background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
@@ -824,6 +834,7 @@
 }
 
 .modal-cta-button:hover {
+    color: white;
     background: var(--color-primary-dark);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
