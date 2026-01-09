@@ -100,7 +100,7 @@ function showDetail(productId) {
                                     </div>
                                     <div class="product-detail-content">
                                         <strong>Berat</strong>
-                                        <span class="detail-value">${data.berat} gram</span>
+                                        <span class="detail-value">${data.berat_isi_bersih} gram</span>
                                     </div>
                                 </div>
                                 
@@ -110,7 +110,7 @@ function showDetail(productId) {
                                     </div>
                                     <div class="product-detail-content">
                                         <strong>Tanggal Produksi</strong>
-                                        <span class="detail-value">${formatDate(data.tanggal_produksi)}</span>
+                                        <span class="detail-value">${formatDate(data.tgl_produksi)}</span>
                                     </div>
                                 </div>
                                 
@@ -120,7 +120,7 @@ function showDetail(productId) {
                                     </div>
                                     <div class="product-detail-content">
                                         <strong>Tanggal Kadaluarsa</strong>
-                                        <span class="detail-value">${formatDate(data.tanggal_kadaluarsa)}</span>
+                                        <span class="detail-value">${formatDate(data.tgl_kadaluarsa)}</span>
                                     </div>
                                 </div>
                                 
