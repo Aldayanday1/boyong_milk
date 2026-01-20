@@ -1004,6 +1004,14 @@ body.modal-open {
 /* Right Contact Card */
 .cta-right {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* make sure this grid cell centers vertically in the row */
+    align-self: center;
+    /* add vertical breathing room so the card doesn't butt against the section edges */
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
 }
 
 .cta-card {
@@ -1014,6 +1022,18 @@ body.modal-open {
     border: 1px solid rgba(37, 99, 235, 0.1);
     position: relative;
     z-index: 2;
+    /* keep card from stretching and center vertically inside the flex cell */
+    max-width: 520px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Nudge the right CTA card slightly downward for visual balance on large screens */
+.cta-right .cta-card {
+    transform: translateY(28px);
 }
 
 .cta-card-header {
@@ -1060,7 +1080,8 @@ body.modal-open {
     font-size: var(--text-2xl);
     font-weight: 800;
     color: var(--color-dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
 }
 
 .cta-card-subtitle {
@@ -1275,6 +1296,22 @@ body.modal-open {
 
     .cta-trust-badges {
         justify-content: center;
+    }
+
+    /* When stacked, allow right card to stretch and center horizontally */
+    .cta-right {
+        align-self: stretch;
+        display: block;
+    }
+
+    .cta-card {
+        max-width: 720px;
+        margin: var(--spacing-lg) auto 0;
+    }
+
+    /* disable downward nudge on stacked layout */
+    .cta-right .cta-card {
+        transform: none;
     }
 }
 

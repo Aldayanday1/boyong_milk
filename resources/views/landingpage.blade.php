@@ -539,7 +539,7 @@
                             <i class="fas fa-arrow-right cta-contact-btn-arrow"></i>
                         </a>
 
-                        <a href="mailto:desaboyong@example.com" class="cta-contact-btn cta-contact-email">
+                        {{-- <a href="mailto:desaboyong@example.com" class="cta-contact-btn cta-contact-email">
                             <div class="cta-contact-btn-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
@@ -548,7 +548,7 @@
                                 <span class="cta-contact-btn-value">desaboyong@example.com</span>
                             </div>
                             <i class="fas fa-arrow-right cta-contact-btn-arrow"></i>
-                        </a>
+                        </a> --}}
                     </div>
 
                     <div class="cta-card-footer">
