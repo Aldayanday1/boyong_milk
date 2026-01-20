@@ -1,0 +1,197 @@
+/* Pastikan gambar dalam tabel terlihat rapih */
+.image-preview {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Sesuaikan gaya teks untuk deskripsi yang panjang */
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Efek hover untuk tabel */
+.table-striped tbody tr:hover {
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease;
+}
+
+/* Alternating row colors */
+table tbody tr:nth-child(odd) {
+    background-color: #f5f5f5; /* Warna abu-abu muda untuk baris ganjil */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #ffffff; /* Warna putih untuk baris genap */
+}
+
+/* Efek hover pada baris tabel */
+table tbody tr:hover {
+    background-color: #e0e0e0; /* Warna abu-abu lebih gelap saat hover */
+    transition: background-color 0.3s ease;
+}
+
+/* Tombol aksi */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Jarak antar tombol */
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Tombol Add */
+.add-btn:hover {
+    background-color: blue; /* Warna kuning lebih gelap saat hover */
+    color: white;
+}
+
+/* Tombol Edit */
+.edit-btn {
+    background-color: #f59e0b; /* Warna kuning untuk tombol Edit */
+}
+
+.edit-btn:hover {
+    background-color: #d97706; /* Warna kuning lebih gelap saat hover */
+    color: white;
+}
+
+/* Tombol Hapus */
+.delete-btn {
+    background-color: #ef4444; /* Warna merah untuk tombol Hapus */
+}
+
+.delete-btn:hover {
+    background-color: #dc2626; /* Warna merah lebih gelap saat hover */
+    color: white;
+}
+
+/* Efek hover tombol */
+.action-btn:hover {
+    transform: translateY(-8px); /* Efek angkat tombol */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
+/* Gaya ikon dan teks pada tombol */
+.action-btn i {
+    margin-right: 8px; /* Jarak ikon dan teks */
+}
+
+.action-btn {
+    text-decoration: none; /* Hilangkan underline */
+}
+
+.action-btn:hover {
+    text-decoration: none; /* Pastikan tidak ada underline saat hover */
+}
+
+.action-btn span {
+    font-weight: normal; /* Pastikan teks tidak menjadi tebal saat hover */
+}
+
+.action-btn:hover span {
+    font-weight: normal; /* Mencegah perubahan ketebalan teks */
+}
+
+/* Styling Default */
+.tombol-tambah {
+    display: flex;
+    align-items: center;
+    background-color: #3b82f6; /* Warna biru */
+    padding: 10px 14px; /* Memperbesar tombol */
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out; /* Animasi smooth */
+}
+
+/* Styling untuk Ikon dan Teks */
+.tombol-tambah i {
+    font-size: 12px;
+    color: white;
+    margin-bottom: 0.1rem;
+}
+
+.tombol-tambah span {
+    font-size: 14px;
+    color: white;
+    margin-left: 0.8rem;
+}
+
+/* Hover Effect */
+.tombol-tambah:hover {
+    background-color: #385fe0; /* Biru lebih gelap */
+    transform: scale(1.05); /* Sedikit membesar saat di-hover */
+}
+
+/* Responsif untuk tampilan mobile */
+/* @media (max-width: 768px) {
+    .overflow-x-auto {
+        white-space: nowrap;
+    }
+
+    table {
+        min-width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+} */
+
+/* Pastikan ada jarak kanan dan kiri */
+.responsive-container {
+    padding: 20px;
+    margin-top: 3rem;
+}
+
+/* Animasi saat muncul */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.8s ease-out;
+}
+
+/* Saat elemen terlihat */
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Saat layar kecil, tetap beri padding, tetapi tetap bisa di-scroll ke kanan */
+@media (max-width: 768px) {
+    .responsive-container {
+        padding: 20px;
+        margin-top: 2rem;
+    }
+
+    .overflow-x-auto {
+        overflow-x: auto; /* Pastikan tabel bisa di-scroll */
+        white-space: nowrap;
+        padding: 0; /* Hapus padding bawah agar tidak menambah ruang kosong */
+    }
+
+    table {
+        min-width: 100%; /* Biarkan tabel mengikuti kontennya */
+        display: block;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+}

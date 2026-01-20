@@ -1,0 +1,73 @@
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+.env
+.env.backup
+.env.production
+.env.local
+
+# Database files
+/database/database.sqlite
+*.sqlite
+*.sqlite-journal
+
+# Uploaded images (jika berisi data pribadi)
+/public/images/produk/*
+!/public/images/produk/.gitkeep
+
+# Storage files
+/storage/app/public/produk/*
+!/storage/app/public/produk/.gitkeep
+
+# Large files (exceeds GitHub limit)
+*.zip
+*.rar
+*.7z
+*.tar.gz
+/public/images/*.mp4
+/public/images/*.avi
+/public/images/*.mov
+/public/images/*.mkv
+
+# IDE and Editor files
+.phpactor.json
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/auth.json
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Logs
+*.log
+/logs
+/storage/logs/*.log
+
+# Security sensitive files
+.env.local
+.env.*.local
+composer.lock.production
+package-lock.json.production
