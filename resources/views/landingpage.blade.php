@@ -380,8 +380,11 @@
                                     <span>{{ ucfirst($produk->kategori) }}</span>
                                 </div>
 
-                                <!-- Product Name -->
-                                <h3 class="produk-title-modern">{{ $produk->nama }}</h3>
+                                <!-- Product Name (single line with ellipsis) -->
+                                <h3 class="produk-title-modern single-line" title="{{ $produk->nama }}"
+                                    style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                    {{ $produk->nama }}
+                                </h3>
 
                                 <!-- Description -->
                                 <p class="produk-desc-modern">{{ Str::limit($produk->deskripsi, 80) }}</p>
