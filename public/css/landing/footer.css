@@ -30,7 +30,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-xs);
-    margin-bottom: 0;
 }
 
 /* Footer Sections */
@@ -146,10 +145,10 @@
 
 /* Footer Bottom */
 .footer-bottom {
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-lg) 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
 }
 
 .footer-bottom p {
