@@ -5,7 +5,7 @@
 .footer {
     background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
     color: rgba(255, 255, 255, 0.8);
-    padding: 4rem 0 0 0;
+    padding: var(--spacing-3xl) 0;
     position: relative;
     overflow: hidden;
 }
@@ -26,10 +26,10 @@
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 var(--spacing-lg);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: var(--spacing-xs);
     margin-bottom: 0;
 }
 
@@ -146,21 +146,16 @@
 
 /* Footer Bottom */
 .footer-bottom {
-    padding: 1.5rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
-    margin-top: 3rem;
-    background: rgba(0, 0, 0, 0.2);
-    width: 100%;
-    display: block;
+    margin-top: var(--spacing-lg);
 }
 
 .footer-bottom p {
-    font-size: 0.95rem;
-    color: #e5e7eb;
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
     margin: 0;
-    font-weight: 400;
-    line-height: 1.6;
 }
 
 .footer-bottom strong {
@@ -181,21 +176,12 @@
 
 @media (max-width: 768px) {
     .footer {
-        padding: 3rem 0 0 0;
+        padding: var(--spacing-2xl) 0;
     }
 
     .footer-container {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    
-    .footer-bottom {
-        margin-top: 2rem;
-        padding: 1.25rem 1rem;
-    }
-    
-    .footer-bottom p {
-        font-size: 0.875rem;
+        gap: var(--spacing-xl);
     }
 
     .footer-info,
