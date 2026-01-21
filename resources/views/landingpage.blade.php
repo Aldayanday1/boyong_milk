@@ -354,74 +354,75 @@
             <div class="row">
                 @foreach ($produks as $produk)
                     <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="produk-card fade-up" onclick="showDetail('{{ $produk->id }}')">
-                            <!-- Status Badge -->
-                            <span class="produk-badge {{ strtolower($produk->status_produk) }}">
-                                @if ($produk->status_produk == 'tersedia')
-                                    <i class="fas fa-check-circle"></i> Tersedia
-                                @elseif($produk->status_produk == 'habis')
-                                    <i class="fas fa-times-circle"></i> Habis
-                                @else
-                                    <i class="fas fa-clock"></i> Pre-Order
-                                @endif
-                            </span>
-
-                            <!-- Image Container -->
-                            <div class="produk-image-container">
-                                <div class="produk-image-wrapper">
-                                    <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama }}"
-                                        loading="lazy">
+                        <div class="produk-card-modern fade-up" onclick="showDetail('{{ $produk->id }}')">
+                            <!-- Image Container with Overlay -->
+                            <div class="produk-image-modern">
+                                <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama }}"
+                                    loading="lazy">
+                                <div class="produk-overlay">
+                                    <div class="produk-badge-modern {{ strtolower($produk->status_produk) }}">
+                                        @if ($produk->status_produk == 'tersedia')
+                                            <i class="fas fa-check-circle"></i> Tersedia
+                                        @elseif($produk->status_produk == 'habis')
+                                            <i class="fas fa-times-circle"></i> Habis
+                                        @else
+                                            <i class="fas fa-clock"></i> Pre-Order
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Content -->
-                            <div class="produk-content">
-                                <!-- Category Badge -->
-                                <div class="produk-category">
+                            <!-- Content Section -->
+                            <div class="produk-content-modern">
+                                <!-- Category with Icon -->
+                                <div class="produk-category-modern">
                                     <i class="fas fa-tag"></i>
                                     <span>{{ ucfirst($produk->kategori) }}</span>
                                 </div>
 
-                                <!-- Title -->
-                                <h3 class="produk-title">{{ $produk->nama }}</h3>
+                                <!-- Product Name -->
+                                <h3 class="produk-title-modern">{{ $produk->nama }}</h3>
 
                                 <!-- Description -->
-                                <p class="produk-description">{{ $produk->deskripsi }}</p>
+                                <p class="produk-desc-modern">{{ Str::limit($produk->deskripsi, 80) }}</p>
 
-                                <!-- Details Grid -->
-                                <div class="produk-details">
-                                    <div class="produk-detail-item">
-                                        <span class="produk-detail-label">Stok</span>
-                                        <span class="produk-detail-value">
+                                <!-- Info Grid -->
+                                <div class="produk-info-grid">
+                                    <div class="produk-info-item">
+                                        <div class="info-icon">
                                             <i class="fas fa-boxes"></i>
-                                            {{ $produk->stok }} unit
-                                        </span>
+                                        </div>
+                                        <div class="info-content">
+                                            <span class="info-label">Stok</span>
+                                            <span class="info-value">{{ $produk->stok }} unit</span>
+                                        </div>
                                     </div>
-                                    <div class="produk-detail-item">
-                                        <span class="produk-detail-label">Berat</span>
-                                        <span class="produk-detail-value">
+                                    <div class="produk-info-item">
+                                        <div class="info-icon">
                                             <i class="fas fa-weight"></i>
-                                            {{ $produk->berat_isi_bersih }}
-                                        </span>
+                                        </div>
+                                        <div class="info-content">
+                                            <span class="info-label">Berat</span>
+                                            <span class="info-value">{{ $produk->berat_isi_bersih }}</span>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- Price Section -->
-                                <div class="produk-price-section">
-                                    <span class="produk-price-label">Harga</span>
-                                    <div class="produk-price-value">
-                                        <span class="currency">Rp</span>
-                                        <span>{{ number_format($produk->harga, 0, ',', '.') }}</span>
+                                <!-- Price & CTA Section -->
+                                <div class="produk-footer-modern">
+                                    <div class="produk-price-modern">
+                                        <span class="price-label">Harga</span>
+                                        <div class="price-value">
+                                            <span class="currency">Rp</span>
+                                            <span
+                                                class="amount">{{ number_format($produk->harga, 0, ',', '.') }}</span>
+                                        </div>
                                     </div>
+                                    <button class="produk-btn-modern">
+                                        <span>Detail</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
                                 </div>
-                            </div>
-
-                            <!-- Footer with CTA -->
-                            <div class="produk-footer">
-                                <button class="produk-btn-detail">
-                                    Detail Produk
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
                             </div>
                         </div>
                     </div>

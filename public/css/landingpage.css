@@ -801,32 +801,6 @@ body::before {
     }
 }
 
-/* ---------------------PRODUCT SECTION (CARD)----------------------- */
-
-.produk-section {
-    padding: 4rem 0;
-    background-color: #f8f9fa;
-    /* Warna background lebih soft */
-}
-
-.produk-card {
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border-radius: 12px;
-    /* Membuat sudut card lebih membulat */
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Efek melayang */
-    background: #fff;
-    border: none;
-}
-
-.produk-card:hover {
-    transform: translateY(-5px);
-    /* Efek mengangkat card saat hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    /* Shadow lebih intens saat hover */
-}
 
 .card-img-top {
     height: 300px;
