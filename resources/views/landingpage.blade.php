@@ -619,9 +619,9 @@
             </div>
         </div>
 
-        <div class="footer-bottom fade-up">
+        {{-- <div class="footer-bottom fade-up">
             <p>&copy; 2025 Padukuhan Boyong. Dibuat oleh <strong>KKN REGULER 090 UMY</strong>. All rights reserved.</p>
-        </div>
+        </div> --}}
     </footer>
 
     <!-- Floating WhatsApp Button -->
