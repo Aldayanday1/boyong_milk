@@ -509,7 +509,16 @@
                 <div class="cta-card">
                     <div class="cta-card-header">
                         <div class="cta-card-icon">
-                            <i class="fas fa-comments"></i>
+                            <div class="icon-outer-ring"></div>
+                            <div class="icon-middle-ring"></div>
+                            <div class="icon-inner-circle">
+                                <div class="icon-glow"></div>
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="icon-particle icon-particle-1"></div>
+                            <div class="icon-particle icon-particle-2"></div>
+                            <div class="icon-particle icon-particle-3"></div>
+                            <div class="icon-particle icon-particle-4"></div>
                         </div>
                         <h3 class="cta-card-title">Hubungi Kami</h3>
                         <p class="cta-card-subtitle">Pilih cara yang paling nyaman untuk Anda</p>
