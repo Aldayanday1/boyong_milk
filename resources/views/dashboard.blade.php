@@ -361,7 +361,7 @@
                     chart: {
                         type: 'bar',
                         height: 300,
-                        width: '100%',
+                        width: '95%',
                         toolbar: {
                             show: false
                         },
@@ -447,7 +447,7 @@
                     chart: {
                         type: 'donut',
                         height: 300,
-                        width: '100%',
+                        width: '95%',
                         animations: {
                             enabled: true,
                             easing: 'easeinout',

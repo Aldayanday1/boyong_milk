@@ -574,7 +574,14 @@ body.admin-body {
     height: 300px;
     position: relative;
     width: 100%;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-body>div {
+    width: 100%;
+    max-width: 100%;
 }
 
 .table-section {
