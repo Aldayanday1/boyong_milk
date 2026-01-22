@@ -35,31 +35,31 @@
                 <div class="brand-features">
                     <div class="brand-feature">
                         <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-boxes"></i>
                         </div>
                         <div class="feature-text">
                             <h3>Kelola Produk</h3>
-                            <p>Dashboard lengkap untuk mengelola semua produk</p>
+                            <p>CRUD produk lengkap dalam satu dashboard</p>
                         </div>
                     </div>
 
                     <div class="brand-feature">
                         <div class="feature-icon">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-chart-pie"></i>
                         </div>
                         <div class="feature-text">
-                            <h3>Manajemen User</h3>
-                            <p>Kontrol akses dan hak admin dengan mudah</p>
+                            <h3>Data & Statistik</h3>
+                            <p>Pantau status produk lewat grafik interaktif</p>
                         </div>
                     </div>
 
                     <div class="brand-feature">
                         <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-tachometer-alt"></i>
                         </div>
                         <div class="feature-text">
-                            <h3>Keamanan Terjamin</h3>
-                            <p>Sistem enkripsi dan autentikasi berlapis</p>
+                            <h3>Panel Admin</h3>
+                            <p>Antarmuka admin modern dan mudah digunakan</p>
                         </div>
                     </div>
                 </div>
