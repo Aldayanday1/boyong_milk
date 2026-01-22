@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 // Landing Page Route - Modern Design
 Route::get('/', [ProdukController::class, 'index'])->name('landingpage');
 
+// Product Detail JSON Route for Landing Page Modal
+Route::get('/produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -23,12 +26,6 @@ Route::prefix('dashboard')->group(function () {
     Route::put('produk/{produk}', [ProdukController::class, 'update'])->name('produk.update');
     // Route::delete('delete/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy');
     Route::delete('produk/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy');
-});
-
-// Detail Produk di landing page
-Route::get('/produk/{id}', function ($id) {
-    $produk = Produk::findOrFail($id);
-    return response()->json($produk);
 });
 
 require __DIR__.'/auth.php';
