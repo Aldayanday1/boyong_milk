@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     @vite(['resources/css/app.css'])
 </head>
@@ -113,7 +113,7 @@
                             <h3 class="chart-title">Distribusi Produk</h3>
                         </div>
                         <div class="chart-body">
-                            <canvas id="productChart"></canvas>
+                            <div id="productChart"></div>
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@
                             <h3 class="chart-title">Status Ketersediaan</h3>
                         </div>
                         <div class="chart-body">
-                            <canvas id="statusChart"></canvas>
+                            <div id="statusChart"></div>
                         </div>
                     </div>
                 </div>
@@ -316,88 +316,225 @@
             });
             document.getElementById('current-date').textContent = currentDate;
 
-            // Chart.js - Product Distribution by Category
+            // ApexCharts - Product Distribution by Category (Bar Chart)
             const productCtx = document.getElementById('productChart');
             if (productCtx) {
-                new Chart(productCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: {!! json_encode($kategoriLabels) !!},
-                        datasets: [{
-                            label: 'Jumlah Produk',
-                            data: {!! json_encode($kategoriData) !!},
-                            backgroundColor: [
-                                'rgba(59, 130, 246, 0.8)',
-                                'rgba(16, 185, 129, 0.8)',
-                                'rgba(245, 158, 11, 0.8)',
-                                'rgba(239, 68, 68, 0.8)',
-                                'rgba(139, 92, 246, 0.8)'
-                            ],
-                            borderColor: [
-                                'rgba(59, 130, 246, 1)',
-                                'rgba(16, 185, 129, 1)',
-                                'rgba(245, 158, 11, 1)',
-                                'rgba(239, 68, 68, 1)',
-                                'rgba(139, 92, 246, 1)'
-                            ],
-                            borderWidth: 2,
-                            borderRadius: 8
-                        }]
+                const productOptions = {
+                    series: [{
+                        name: 'Jumlah Produk',
+                        data: {!! json_encode($kategoriData) !!}
+                    }],
+                    chart: {
+                        type: 'bar',
+                        height: 300,
+                        toolbar: {
+                            show: false
+                        },
+                        animations: {
+                            enabled: true,
+                            easing: 'easeinout',
+                            speed: 1500,
+                            animateGradually: {
+                                enabled: true,
+                                delay: 200
+                            },
+                            dynamicAnimation: {
+                                enabled: true,
+                                speed: 500
+                            }
+                        }
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
+                    plotOptions: {
+                        bar: {
+                            borderRadius: 8,
+                            columnWidth: '60%',
+                            distributed: true,
+                            dataLabels: {
+                                position: 'top'
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    xaxis: {
+                        categories: {!! json_encode($kategoriLabels) !!},
+                        labels: {
+                            style: {
+                                fontSize: '12px',
+                                fontWeight: 500
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            show: false
+                        }
+                    },
+                    colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+                    legend: {
+                        show: false
+                    },
+                    grid: {
+                        borderColor: '#f3f4f6',
+                        strokeDashArray: 4,
+                        xaxis: {
+                            lines: {
+                                show: false
                             }
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    stepSize: 1
+                        yaxis: {
+                            lines: {
+                                show: true
+                            }
+                        }
+                    },
+                    tooltip: {
+                        theme: 'dark',
+                        y: {
+                            formatter: function(val) {
+                                return val + ' produk';
+                            }
+                        }
+                    }
+                };
+
+                const productChart = new ApexCharts(productCtx, productOptions);
+                productChart.render();
+            }
+
+            // ApexCharts - Status Distribution (Donut Chart)
+            const statusCtx = document.getElementById('statusChart');
+            if (statusCtx) {
+                const statusOptions = {
+                    series: [{{ $produkTersedia }}, {{ $produkHabis }}, {{ $produkPreOrder }}],
+                    chart: {
+                        type: 'donut',
+                        height: 300,
+                        animations: {
+                            enabled: true,
+                            easing: 'easeinout',
+                            speed: 1500,
+                            animateGradually: {
+                                enabled: true,
+                                delay: 300
+                            },
+                            dynamicAnimation: {
+                                enabled: true,
+                                speed: 500
+                            }
+                        }
+                    },
+                    labels: ['Tersedia', 'Habis', 'Pre-Order'],
+                    colors: ['#10b981', '#ef4444', '#f59e0b'],
+                    plotOptions: {
+                        pie: {
+                            startAngle: 0,
+                            endAngle: 360,
+                            expandOnClick: true,
+                            offsetX: 0,
+                            offsetY: 0,
+                            customScale: 1,
+                            dataLabels: {
+                                offset: 0,
+                                minAngleToShowLabel: 10
+                            },
+                            donut: {
+                                size: '65%',
+                                background: 'transparent',
+                                labels: {
+                                    show: true,
+                                    name: {
+                                        show: true,
+                                        fontSize: '16px',
+                                        fontWeight: 600,
+                                        offsetY: -10
+                                    },
+                                    value: {
+                                        show: true,
+                                        fontSize: '24px',
+                                        fontWeight: 700,
+                                        offsetY: 5,
+                                        formatter: function(val) {
+                                            return val + ' produk';
+                                        }
+                                    },
+                                    total: {
+                                        show: true,
+                                        label: 'Total Produk',
+                                        fontSize: '14px',
+                                        fontWeight: 500,
+                                        color: '#6b7280',
+                                        formatter: function(w) {
+                                            const total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                                            return total + ' produk';
+                                        }
+                                    }
                                 }
                             }
                         }
-                    }
-                });
-            }
-
-            // Chart.js - Status Distribution (Doughnut)
-            const statusCtx = document.getElementById('statusChart');
-            if (statusCtx) {
-                new Chart(statusCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Tersedia', 'Habis', 'Pre-Order'],
-                        datasets: [{
-                            data: [{{ $produkTersedia }}, {{ $produkHabis }},
-                                {{ $produkPreOrder }}
-                            ],
-                            backgroundColor: [
-                                'rgba(16, 185, 129, 0.8)',
-                                'rgba(239, 68, 68, 0.8)',
-                                'rgba(245, 158, 11, 0.8)'
-                            ],
-                            borderColor: [
-                                'rgba(16, 185, 129, 1)',
-                                'rgba(239, 68, 68, 1)',
-                                'rgba(245, 158, 11, 1)'
-                            ],
-                            borderWidth: 2
-                        }]
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom'
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function(val, opts) {
+                            return Math.round(val) + '%';
+                        },
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 'bold',
+                            colors: ['#fff']
+                        },
+                        dropShadow: {
+                            enabled: true,
+                            blur: 3,
+                            opacity: 0.8
+                        }
+                    },
+                    legend: {
+                        show: true,
+                        position: 'bottom',
+                        horizontalAlign: 'center',
+                        fontSize: '13px',
+                        fontWeight: 500,
+                        offsetY: 10,
+                        markers: {
+                            width: 12,
+                            height: 12,
+                            radius: 12
+                        },
+                        itemMargin: {
+                            horizontal: 15,
+                            vertical: 5
+                        }
+                    },
+                    tooltip: {
+                        theme: 'dark',
+                        y: {
+                            formatter: function(val, opts) {
+                                const total = opts.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                                const percentage = ((val / total) * 100).toFixed(1);
+                                return val + ' produk (' + percentage + '%)';
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            filter: {
+                                type: 'lighten',
+                                value: 0.15
+                            }
+                        },
+                        active: {
+                            filter: {
+                                type: 'darken',
+                                value: 0.15
                             }
                         }
                     }
-                });
+                };
+
+                const statusChart = new ApexCharts(statusCtx, statusOptions);
+                statusChart.render();
             }
         });
     </script>
