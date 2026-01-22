@@ -483,7 +483,7 @@
                     <div class="cta-stat-divider"></div>
                     <div class="cta-stat-item">
                         <div class="cta-stat-number">24/7</div>
-                        <div class="cta-stat-label">Layanan Siap</div>
+                        <div class="cta-stat-label">Respon Cepat</div>
                     </div>
                     <div class="cta-stat-divider"></div>
                     <div class="cta-stat-item">
@@ -569,7 +569,7 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="cta-card-footer-text">
-                            <strong>Waktu Operasional</strong>
+                            <strong>Operasional Produksi</strong>
                             <span>Senin - Minggu: 07.00 - 20.00 WIB</span>
                         </div>
                     </div>
