@@ -91,25 +91,11 @@
                     <p>Masuk ke akun administrator Anda</p>
                 </div>
 
-                <form method="POST" action="{{ route('login') }}" class="login-form">
+                <form id="loginForm" method="POST" action="{{ route('login') }}" class="login-form">
                     @csrf
 
-                    @if (session('error'))
-                        <div class="alert-error">
-                            <i class="fas fa-exclamation-circle"></i>
-                            <span>{{ session('error') }}</span>
-                        </div>
-                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                        <script>
-                            Swal.fire({
-                                title: 'Gagal!',
-                                text: "{{ session('error') }}",
-                                icon: 'error',
-                                timer: 3000,
-                                showConfirmButton: true
-                            });
-                        </script>
-                    @endif
+                    <!-- Alert Container (will be populated via JS on error) -->
+                    <div id="alertContainer"></div>
 
                     <!-- Username -->
                     <div class="form-group">
@@ -159,6 +145,9 @@
         </div>
     </div>
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Scripts -->
     <script>
         // Toggle Password Visibility
@@ -177,12 +166,97 @@
             }
         }
 
-        // Page Load Animation
+        // Page Load Animation - Only on first visit
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                document.querySelector('.login-left-content').classList.add('animate-in');
-                document.querySelector('.login-right-content').classList.add('animate-in');
-            }, 100);
+            // Check if animations have been shown in this session
+            const animationsShown = sessionStorage.getItem('loginAnimationsShown');
+
+            if (!animationsShown) {
+                // First visit - show animations
+                setTimeout(() => {
+                    document.querySelector('.login-left-content').classList.add('animate-in');
+                    document.querySelector('.login-right-content').classList.add('animate-in');
+                }, 100);
+
+                // Mark animations as shown for this session
+                sessionStorage.setItem('loginAnimationsShown', 'true');
+            } else {
+                // Already visited - show content immediately without animation
+                document.querySelector('.login-left-content').style.opacity = '1';
+                document.querySelector('.login-left-content').style.transform = 'translateX(0)';
+                document.querySelector('.login-right-content').style.opacity = '1';
+                document.querySelector('.login-right-content').style.transform = 'translateX(0)';
+            }
+        });
+
+        // AJAX Form Submission - Prevent page reload on failed login
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('.btn-login');
+
+            // Disable button during submission
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span>Memproses...</span><i class="fas fa-spinner fa-spin"></i>';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Login successful - redirect to dashboard
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: 'Login berhasil. Mengalihkan ke dashboard...',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => {
+                        window.location.href = '{{ route('dashboard') }}';
+                    });
+                } else {
+                    // Login failed - show error without reloading page
+                    const data = await response.json();
+                    const errorMessage = data.error || 'Terjadi kesalahan. Silakan coba lagi.';
+
+                    // Show SweetAlert2 error
+                    Swal.fire({
+                        title: 'Gagal!',
+                        text: errorMessage,
+                        icon: 'error',
+                        confirmButtonText: 'Coba Lagi',
+                        confirmButtonColor: '#2563eb'
+                    });
+
+                    // Re-enable button
+                    submitButton.disabled = false;
+                    submitButton.innerHTML =
+                        '<span>Masuk ke Dashboard</span><i class="fas fa-arrow-right"></i>';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+
+                // Show error alert
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Terjadi kesalahan koneksi. Silakan coba lagi.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#2563eb'
+                });
+
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<span>Masuk ke Dashboard</span><i class="fas fa-arrow-right"></i>';
+            }
         });
     </script>
 </body>

@@ -31,8 +31,16 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('dashboard'));
         }
 
-        // Jika login gagal, kirimkan pesan error ke session
-    return back()->with('error', 'Username atau password salah. Silakan coba lagi.');
+        // Jika login gagal
+        // Cek apakah request dari AJAX
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'error' => 'Username atau password salah. Silakan coba lagi.'
+            ], 401);
+        }
+
+        // Fallback untuk non-AJAX request
+        return back()->with('error', 'Username atau password salah. Silakan coba lagi.');
     }
 
     /**
