@@ -48,7 +48,7 @@ class ProdukController extends Controller
             ->toArray();
 
         // Produk list with pagination
-        $produks = Produk::orderBy('created_at', 'desc')->paginate(10);
+        $produks = Produk::orderBy('created_at', 'desc')->paginate(5);
 
         return view('dashboard', compact(
             'produks',
