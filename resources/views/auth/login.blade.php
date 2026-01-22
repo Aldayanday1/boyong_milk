@@ -211,7 +211,10 @@
                     }
                 });
 
-                if (response.ok) {
+                // Parse JSON response
+                const data = await response.json();
+
+                if (response.ok && data.success) {
                     // Login successful - redirect to dashboard
                     Swal.fire({
                         title: 'Berhasil!',
@@ -220,12 +223,11 @@
                         timer: 1500,
                         showConfirmButton: false
                     }).then(() => {
-                        window.location.href = '{{ route('dashboard') }}';
+                        window.location.href = data.redirect || '{{ route('dashboard') }}';
                     });
                 } else {
                     // Login failed - show error without reloading page
-                    const data = await response.json();
-                    const errorMessage = data.error || 'Terjadi kesalahan. Silakan coba lagi.';
+                    const errorMessage = data.error || 'Username atau password salah. Silakan coba lagi.';
 
                     // Show SweetAlert2 error
                     Swal.fire({
