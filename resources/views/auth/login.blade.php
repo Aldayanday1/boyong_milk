@@ -184,14 +184,6 @@
                 document.querySelector('.login-right-content').classList.add('animate-in');
             }, 100);
         });
-
-        // Auto-hide alert after 5 seconds
-        const alert = document.querySelector('.alert-error');
-        if (alert) {
-            setTimeout(() => {
-                alert.style.animation = 'slideOut 0.5s ease-out forwards';
-            }, 5000);
-        }
     </script>
 </body>
 
