@@ -80,6 +80,10 @@
 }
 
 /* Footer Links */
+.footer-links {
+    margin-left: 3rem;
+}
+
 .footer-links ul {
     list-style: none;
     padding: 0;
