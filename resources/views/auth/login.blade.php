@@ -152,7 +152,7 @@
                     </button>
 
                     <div class="login-footer">
-                        <p>Lupa password? <a href="#">Hubungi Administrator</a></p>
+                        <p>Butuh bantuan login? <a href="#">Hubungi pengelola</a></p>
                     </div>
                 </form>
             </div>
