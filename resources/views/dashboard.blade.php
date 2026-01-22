@@ -289,6 +289,10 @@
             });
         }
 
+        // Store chart instances globally
+        let productChart = null;
+        let statusChart = null;
+
         document.addEventListener("DOMContentLoaded", function() {
             // Sidebar Toggle - Start collapsed by default
             const sidebar = document.getElementById('sidebar');
@@ -357,6 +361,7 @@
                     chart: {
                         type: 'bar',
                         height: 300,
+                        width: '100%',
                         toolbar: {
                             show: false
                         },
@@ -369,10 +374,11 @@
                                 delay: 200
                             },
                             dynamicAnimation: {
-                                enabled: true,
-                                speed: 500
+                                enabled: false
                             }
-                        }
+                        },
+                        redrawOnParentResize: false,
+                        redrawOnWindowResize: false
                     },
                     plotOptions: {
                         bar: {
@@ -429,7 +435,7 @@
                     }
                 };
 
-                const productChart = new ApexCharts(productCtx, productOptions);
+                productChart = new ApexCharts(productCtx, productOptions);
                 productChart.render();
             }
 
@@ -441,6 +447,7 @@
                     chart: {
                         type: 'donut',
                         height: 300,
+                        width: '100%',
                         animations: {
                             enabled: true,
                             easing: 'easeinout',
@@ -450,10 +457,11 @@
                                 delay: 300
                             },
                             dynamicAnimation: {
-                                enabled: true,
-                                speed: 500
+                                enabled: false
                             }
-                        }
+                        },
+                        redrawOnParentResize: false,
+                        redrawOnWindowResize: false
                     },
                     labels: ['Tersedia', 'Habis', 'Pre-Order'],
                     colors: ['#10b981', '#ef4444', '#f59e0b'],
@@ -524,7 +532,7 @@
                     }
                 };
 
-                const statusChart = new ApexCharts(statusCtx, statusOptions);
+                statusChart = new ApexCharts(statusCtx, statusOptions);
                 statusChart.render();
             }
         });

@@ -534,6 +534,7 @@ body.admin-body {
     box-shadow: var(--shadow-md);
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
+    overflow: hidden;
 }
 
 .chart-card:nth-child(1) {
@@ -572,6 +573,8 @@ body.admin-body {
 .chart-body {
     height: 300px;
     position: relative;
+    width: 100%;
+    transition: all 0.3s ease;
 }
 
 .table-section {
