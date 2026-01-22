@@ -226,7 +226,7 @@
                         title: 'Gagal!',
                         text: errorMessage,
                         icon: 'error',
-                        confirmButtonText: 'Coba Lagi',
+                        confirmButtonText: 'Oke',
                         confirmButtonColor: '#2563eb'
                     });
 
