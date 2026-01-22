@@ -409,6 +409,24 @@ body.admin-body {
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.analytics-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.analytics-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.analytics-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.analytics-card:nth-child(4) {
+    animation-delay: 0.4s;
 }
 
 .analytics-card::before {

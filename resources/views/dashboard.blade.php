@@ -52,7 +52,7 @@
                             <i class="fas fa-box"></i>
                         </div>
                         <div class="card-content">
-                            <h3 class="card-value">{{ $totalProduk }}</h3>
+                            <h3 class="card-value" data-target="{{ $totalProduk }}">0</h3>
                             <p class="card-label">Total Produk</p>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="card-content">
-                            <h3 class="card-value">{{ $produkTersedia }}</h3>
+                            <h3 class="card-value" data-target="{{ $produkTersedia }}">0</h3>
                             <p class="card-label">Produk Tersedia</p>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             <i class="fas fa-exclamation-circle"></i>
                         </div>
                         <div class="card-content">
-                            <h3 class="card-value">{{ $produkHabis }}</h3>
+                            <h3 class="card-value" data-target="{{ $produkHabis }}">0</h3>
                             <p class="card-label">Stok Habis</p>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="card-content">
-                            <h3 class="card-value">{{ $produkPreOrder }}</h3>
+                            <h3 class="card-value" data-target="{{ $produkPreOrder }}">0</h3>
                             <p class="card-label">Stok Pre-Order</p>
                         </div>
                     </div>
@@ -315,6 +315,36 @@
                 day: 'numeric'
             });
             document.getElementById('current-date').textContent = currentDate;
+
+            // Animate Counter for Analytics Cards
+            function animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        element.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        element.textContent = target;
+                    }
+                };
+
+                updateCounter();
+            }
+
+            // Start counter animation after card animations
+            setTimeout(() => {
+                const cardValues = document.querySelectorAll('.card-value[data-target]');
+                cardValues.forEach((value, index) => {
+                    setTimeout(() => {
+                        animateCounter(value);
+                    }, index * 100); // Stagger each counter by 100ms
+                });
+            }, 500); // Wait 500ms for cards to fade in
 
             // ApexCharts - Product Distribution by Category (Bar Chart)
             const productCtx = document.getElementById('productChart');
