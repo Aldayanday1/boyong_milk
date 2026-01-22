@@ -88,33 +88,43 @@ body.modal-open {
 /* Status Badge */
 .produk-badge-modern {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    padding: 8px 16px;
-    border-radius: 50px;
-    font-size: 12px;
-    font-weight: 600;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 6px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    gap: 5px;
     z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.produk-badge-modern i {
+    font-size: 10px;
 }
 
 .produk-badge-modern.tersedia {
-    background: rgba(16, 185, 129, 0.95);
+    background: #10b981;
     color: #ffffff;
 }
 
 .produk-badge-modern.habis {
-    background: rgba(239, 68, 68, 0.95);
+    background: #ef4444;
     color: #ffffff;
 }
 
 .produk-badge-modern.pre_order {
-    background: rgba(249, 115, 22, 0.95);
+    background: #f97316;
     color: #ffffff;
+}
+
+.produk-card-modern:hover .produk-badge-modern {
+    transform: scale(1.05);
 }
 
 /* Content Section */

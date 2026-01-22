@@ -312,7 +312,7 @@
                 </div>
 
                 <div class="gallery-item fade-up">
-                    <img src="{{ asset('images/pengolahan-1.jpeg') }}" alt="Proses Pengolahan">
+                    <img src="{{ asset('images/pengolahan.jpeg') }}" alt="Proses Pengolahan">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-icon">
                             <i class="fa-solid fa-gears"></i>
