@@ -443,52 +443,13 @@
                                 size: '65%',
                                 background: 'transparent',
                                 labels: {
-                                    show: true,
-                                    name: {
-                                        show: true,
-                                        fontSize: '16px',
-                                        fontWeight: 600,
-                                        offsetY: -10
-                                    },
-                                    value: {
-                                        show: true,
-                                        fontSize: '24px',
-                                        fontWeight: 700,
-                                        offsetY: 5,
-                                        formatter: function(val) {
-                                            return val + ' produk';
-                                        }
-                                    },
-                                    total: {
-                                        show: true,
-                                        label: 'Total Produk',
-                                        fontSize: '14px',
-                                        fontWeight: 500,
-                                        color: '#6b7280',
-                                        formatter: function(w) {
-                                            const total = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                                            return total + ' produk';
-                                        }
-                                    }
+                                    show: false
                                 }
                             }
                         }
                     },
                     dataLabels: {
-                        enabled: true,
-                        formatter: function(val, opts) {
-                            return Math.round(val) + '%';
-                        },
-                        style: {
-                            fontSize: '13px',
-                            fontWeight: 'bold',
-                            colors: ['#fff']
-                        },
-                        dropShadow: {
-                            enabled: true,
-                            blur: 3,
-                            opacity: 0.8
-                        }
+                        enabled: false
                     },
                     legend: {
                         show: true,
