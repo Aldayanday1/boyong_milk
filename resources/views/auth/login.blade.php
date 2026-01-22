@@ -215,16 +215,8 @@
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    // Login successful - redirect to dashboard
-                    Swal.fire({
-                        title: 'Berhasil!',
-                        text: 'Login berhasil. Mengalihkan ke dashboard...',
-                        icon: 'success',
-                        timer: 1500,
-                        showConfirmButton: false
-                    }).then(() => {
-                        window.location.href = data.redirect || '{{ route('dashboard') }}';
-                    });
+                    // Login successful - redirect to dashboard immediately
+                    window.location.href = data.redirect || '{{ route('dashboard') }}';
                 } else {
                     // Login failed - show error without reloading page
                     const errorMessage = data.error || 'Username atau password salah. Silakan coba lagi.';
