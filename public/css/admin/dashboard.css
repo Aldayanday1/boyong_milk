@@ -126,8 +126,8 @@ body.admin-body {
 }
 
 .btn-toggle {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: transparent;
@@ -146,8 +146,6 @@ body.admin-body {
 
 .sidebar.collapsed .btn-toggle {
     margin: 0 auto;
-    width: 40px;
-    height: 40px;
     background: rgba(255, 255, 255, 0.05);
     border-color: transparent;
 }
@@ -247,7 +245,7 @@ body.admin-body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     flex-shrink: 0;
     transition: transform var(--transition-fast);
 }
@@ -276,8 +274,9 @@ body.admin-body {
     padding: 0 1rem;
 }
 
+/* keep icon size consistent between states */
 .sidebar.collapsed .icon-wrapper {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
 }
 
 /* User Profile Footer */
