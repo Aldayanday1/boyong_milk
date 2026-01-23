@@ -185,15 +185,16 @@ body.admin-body {
     color: #64748b;
     padding: 0 1.5rem;
     margin-bottom: 0.75rem;
-    transition: opacity var(--transition-fast);
+    height: 20px;
+    line-height: 20px;
+    transition: opacity var(--transition-normal);
     white-space: nowrap;
+    overflow: hidden;
 }
 
 .sidebar.collapsed .nav-label {
     opacity: 0;
-    height: 0;
-    margin: 0;
-    overflow: hidden;
+    pointer-events: none;
 }
 
 .nav-list {
