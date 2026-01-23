@@ -744,13 +744,15 @@ body.admin-body {
 .table-meta-pill {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 0.45rem 0.8rem;
+    height: 42px;
+    padding: 0 1.25rem;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.75);
     border: 1px solid rgba(148, 163, 184, 0.35);
     color: #334155;
-    font-size: 0.82rem;
+    font-size: 0.875rem;
     font-weight: 600;
     backdrop-filter: blur(10px);
 }
