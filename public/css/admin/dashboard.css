@@ -898,8 +898,6 @@ body.admin-body {
 .table-pagination {
     padding: 1.5rem 2rem;
     border-top: 1px solid var(--gray-200);
-    display: flex;
-    justify-content: center;
 }
 
 @media (max-width: 1024px) {
