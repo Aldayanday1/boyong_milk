@@ -671,47 +671,163 @@ body.admin-body {
 .table-card-header {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid #e5eaf2;
-    background: linear-gradient(180deg, #fdfefe 0%, #f2f6fb 100%);
+    background:
+        radial-gradient(900px 220px at 10% 0%, rgba(59, 130, 246, 0.10), transparent 60%),
+        radial-gradient(700px 180px at 90% 10%, rgba(16, 185, 129, 0.10), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
-.table-card-header .header-left {
+
+/* Table header redesign */
+.table-header-left {
     flex: 1;
+    min-width: 260px;
 }
 
-.table-title {
-    font-size: 1.12rem;
-    font-weight: 750;
-    color: var(--gray-900);
-    margin: 0 0 0.3rem 0;
+.table-title-row {
     display: flex;
     align-items: center;
     gap: 12px;
-    letter-spacing: -0.015em;
 }
 
-.table-title i {
-    width: 38px;
-    height: 38px;
+.table-title-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
-    background: rgba(59, 130, 246, 0.12);
-    color: var(--primary);
-    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.18);
-    font-size: 1rem;
+    color: #0b1220;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
     flex-shrink: 0;
 }
 
-.table-subtitle {
-    font-size: 0.9rem;
-    color: #6b7280;
+.table-title-icon i {
+    font-size: 1.05rem;
+    color: var(--primary);
+}
+
+.table-title-text {
+    min-width: 0;
+}
+
+.table-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #0b1220;
     margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.table-subtitle {
+    font-size: 0.92rem;
+    color: #64748b;
+    margin: 0.25rem 0 0 0;
+}
+
+.table-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.table-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: #334155;
+    font-size: 0.82rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.table-meta-pill strong {
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.table-meta-pill i {
+    color: #64748b;
+    font-size: 0.95em;
+}
+
+.table-meta-pill.table-meta-soft {
+    background: rgba(59, 130, 246, 0.07);
+    border-color: rgba(59, 130, 246, 0.14);
+    color: #1e3a8a;
+}
+
+.table-meta-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(100, 116, 139, 0.5);
+}
+
+.table-header-right {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 320px;
+}
+
+.table-tools {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    width: 100%;
+}
+
+.table-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.7rem 0.9rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
+    min-width: 260px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.table-search i {
+    color: #94a3b8;
+}
+
+.table-search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+    color: #0f172a;
+    font-size: 0.92rem;
+}
+
+.table-search-input::placeholder {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.table-search:focus-within {
+    border-color: rgba(59, 130, 246, 0.45);
+    box-shadow:
+        0 14px 28px rgba(15, 23, 42, 0.06),
+        0 0 0 4px rgba(59, 130, 246, 0.12);
 }
 
 .btn-add-product {
@@ -984,12 +1100,26 @@ body.admin-body {
 
     .table-card-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         padding: 1.25rem;
     }
 
-    .table-card-header .header-right {
+    .table-header-right {
         width: 100%;
+        min-width: 0;
+        justify-content: stretch;
+    }
+
+    .table-tools {
+        width: 100%;
+        justify-content: stretch;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-search {
+        width: 100%;
+        min-width: 0;
     }
 
     .btn-add-product {
@@ -1001,9 +1131,9 @@ body.admin-body {
         font-size: 1.05rem;
     }
 
-    .table-title i {
-        width: 34px;
-        height: 34px;
+    .table-title-icon {
+        width: 40px;
+        height: 40px;
         border-radius: 12px;
     }
 

@@ -134,18 +134,51 @@
                 <div class="table-card">
                     <!-- Table Header -->
                     <div class="table-card-header">
-                        <div class="header-left">
-                            <h3 class="table-title">
-                                <i class="fas fa-list"></i>
-                                Daftar Produk
-                            </h3>
-                            <p class="table-subtitle">Kelola semua produk Anda</p>
+                        <div class="table-header-left">
+                            <div
+                                style="display:flex; align-items:center; justify-content:space-between; gap:1rem; width:100%; flex-wrap:wrap;">
+                                <div class="table-title-row" style="display:flex; align-items:center; gap:0.75rem;">
+                                    <div class="table-title-icon" aria-hidden="true">
+                                        <i class="fas fa-boxes-stacked"></i>
+                                    </div>
+                                    <div class="table-title-text">
+                                        <h3 class="table-title">Daftar Produk</h3>
+                                        <p class="table-subtitle">Kelola produk, status, dan stok</p>
+                                    </div>
+                                </div>
+
+                                <div class="table-meta" aria-label="Ringkasan data produk"
+                                    style="display:flex; align-items:center; gap:0.75rem;">
+                                    <span class="table-meta-pill" style="display:flex; align-items:center; gap:0.5rem;">
+                                        <i class="fas fa-layer-group" aria-hidden="true"></i>
+                                        <span>Total:</span>
+                                        <span style="font-weight:500;">
+                                            {{ method_exists($produks, 'total') ? $produks->total() : $produks->count() }}
+                                        </span>
+                                    </span>
+                                    <span class="table-meta-dot" aria-hidden="true"></span>
+                                    <span class="table-meta-pill table-meta-soft"
+                                        style="display:flex; align-items:center; gap:0.5rem;">
+                                        <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                                        <span>Admin panel</span>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="header-right">
-                            <a href="{{ route('produk.create') }}" class="btn-add-product">
-                                <i class="fas fa-plus"></i>
-                                <span>Tambah Produk</span>
-                            </a>
+
+                        <div class="table-header-right">
+                            <div class="table-tools">
+                                <div class="table-search" role="search">
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                    <input type="text" class="table-search-input" placeholder="Cari produk..."
+                                        aria-label="Cari produk" />
+                                </div>
+
+                                <a href="{{ route('produk.create') }}" class="btn-add-product">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Tambah Produk</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -211,8 +244,8 @@
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form id="delete-form-{{ $produk->id }}"
-                                                    action="{{ route('produk.destroy', $produk->id) }}" method="POST"
-                                                    style="display: inline;">
+                                                    action="{{ route('produk.destroy', $produk->id) }}"
+                                                    method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn-action btn-delete"
