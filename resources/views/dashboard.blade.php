@@ -31,14 +31,91 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
-                <div class="header-left">
-                    <h1 class="page-title">Dashboard</h1>
-                    <p class="page-subtitle">Selamat datang kembali, <strong>{{ Auth::user()->name }}</strong>!</p>
+                <!-- Top Bar -->
+                <div class="header-top-bar">
+                    <div class="breadcrumb-wrapper">
+                        <nav class="breadcrumb">
+                            <i class="fas fa-home"></i>
+                            <span class="breadcrumb-separator">/</span>
+                            <span class="breadcrumb-current">Dashboard</span>
+                        </nav>
+                    </div>
+
+                    <div class="header-top-actions">
+                        <!-- Live Time Display -->
+                        <div class="live-time-display">
+                            <div class="time-icon-wrapper">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="time-info">
+                                <span class="current-time" id="current-time">00:00:00</span>
+                                <span class="current-day" id="current-day">Hari, DD Bulan YYYY</span>
+                            </div>
+                        </div>
+
+                        <!-- Notifications -->
+                        <div class="header-notification">
+                            <button class="notification-btn" aria-label="Notifikasi">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-badge">3</span>
+                            </button>
+                        </div>
+
+                        <!-- User Profile -->
+                        <div class="header-user-profile">
+                            <div class="profile-avatar-wrapper">
+                                <div class="profile-avatar">
+                                    <span>{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
+                                </div>
+                                <span class="profile-status-dot"></span>
+                            </div>
+                            <div class="profile-info">
+                                <span class="profile-name">{{ Auth::user()->name }}</span>
+                                <span class="profile-role">Administrator</span>
+                            </div>
+                            <i class="fas fa-chevron-down profile-dropdown-icon"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="header-right">
-                    <div class="header-time">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span id="current-date"></span>
+
+                <!-- Main Header Content -->
+                <div class="header-main-content">
+                    <div class="header-left">
+                        <div class="page-title-wrapper">
+                            <div class="page-icon-badge">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="page-title-group">
+                                <h1 class="page-title">Dashboard Overview</h1>
+                                <p class="page-subtitle">Pantau performa dan kelola produk Anda</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-right">
+                        <div class="header-quick-stats">
+                            <div class="quick-stat-pill">
+                                <i class="fas fa-box-open"></i>
+                                <div class="quick-stat-info">
+                                    <span class="quick-stat-value">{{ $totalProduk }}</span>
+                                    <span class="quick-stat-label">Produk</span>
+                                </div>
+                            </div>
+                            <div class="quick-stat-pill">
+                                <i class="fas fa-check-circle"></i>
+                                <div class="quick-stat-info">
+                                    <span class="quick-stat-value">{{ $produkTersedia }}</span>
+                                    <span class="quick-stat-label">Tersedia</span>
+                                </div>
+                            </div>
+                            <div class="quick-stat-pill">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div class="quick-stat-info">
+                                    <span class="quick-stat-value">{{ $produkHabis }}</span>
+                                    <span class="quick-stat-label">Habis</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -346,14 +423,34 @@
                 });
             }
 
-            // Current Date
-            const currentDate = new Date().toLocaleDateString('id-ID', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            document.getElementById('current-date').textContent = currentDate;
+            // Live Time & Date Update
+            function updateTime() {
+                const now = new Date();
+
+                // Format time (HH:MM:SS)
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const timeString = `${hours}:${minutes}:${seconds}`;
+
+                // Format date (Hari, DD Bulan YYYY)
+                const dateString = now.toLocaleDateString('id-ID', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                const timeElement = document.getElementById('current-time');
+                const dayElement = document.getElementById('current-day');
+
+                if (timeElement) timeElement.textContent = timeString;
+                if (dayElement) dayElement.textContent = dateString;
+            }
+
+            // Update time immediately and every second
+            updateTime();
+            setInterval(updateTime, 1000);
 
             // Animate Counter for Analytics Cards
             function animateCounter(element) {
