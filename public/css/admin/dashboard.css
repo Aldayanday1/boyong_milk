@@ -677,7 +677,7 @@ body.admin-body {
         linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     gap: 1.25rem;
 }
@@ -737,7 +737,7 @@ body.admin-body {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-top: 0.85rem;
+    margin-top: 0;
     flex-wrap: wrap;
 }
 

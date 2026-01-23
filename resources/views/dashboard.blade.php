@@ -191,8 +191,6 @@
                         </div>
                     </div>
 
-
-
                     <!-- Table Wrapper -->
                     <div class="table-wrapper">
                         <table class="products-table">
