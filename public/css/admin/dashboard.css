@@ -55,8 +55,10 @@ body.admin-body {
     top: 0;
     width: var(--sidebar-width);
     height: 100vh;
-    background: #0f172a; /* Slate 900 */
-    color: #cbd5e1; /* Slate 300 */
+    background: #0f172a;
+    /* Slate 900 */
+    color: #cbd5e1;
+    /* Slate 300 */
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     display: flex;
@@ -100,7 +102,7 @@ body.admin-body {
     height: 40px;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .brand-info {
@@ -280,23 +282,26 @@ body.admin-body {
 
 /* User Profile Footer */
 .sidebar-footer {
-    padding: 1.25rem;
+    padding: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     background: rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
 }
 
 .sidebar.collapsed .sidebar-footer {
-    padding: 1.25rem;
+    padding: 1rem;
 }
 
 .user-card {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     background: transparent;
     border-radius: 12px;
     transition: all var(--transition-fast);
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .sidebar.collapsed .user-card {
@@ -340,6 +345,7 @@ body.admin-body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    min-width: 0;
     transition: opacity var(--transition-fast);
 }
 
@@ -364,18 +370,30 @@ body.admin-body {
 }
 
 .user-actions {
-    transition: opacity var(--transition-fast);
+    flex-shrink: 0;
+    max-width: 36px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0.5s, visibility 0s 0.5s;
+}
+
+.sidebar:not(.collapsed) .user-actions {
+    opacity: 1;
+    visibility: visible;
 }
 
 .sidebar.collapsed .user-actions {
+    opacity: 0;
+    visibility: hidden;
     display: none;
+    transition: none;
 }
 
 .btn-logout {
     border: none;
     background: rgba(255, 255, 255, 0.05);
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -383,6 +401,7 @@ body.admin-body {
     color: #ef4444;
     cursor: pointer;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .btn-logout:hover {
