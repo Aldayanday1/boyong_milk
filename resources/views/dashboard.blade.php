@@ -167,20 +167,31 @@
                         </div>
 
                         <div class="table-header-right">
-                            <div class="table-tools">
-                                <div class="table-search" role="search">
-                                    <i class="fas fa-search" aria-hidden="true"></i>
-                                    <input type="text" class="table-search-input" placeholder="Cari produk..."
-                                        aria-label="Cari produk" />
+                            <div class="table-tools" style="display:flex; align-items:center; gap:0.75rem;">
+                                <!-- Modern Minimal Search -->
+                                <div class="modern-search" style="position:relative; width:280px;">
+                                    <i class="fas fa-search" aria-hidden="true"
+                                        style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#9CA3AF; font-size:14px;"></i>
+                                    <input id="table-search-input" type="search" class="table-search-input"
+                                        placeholder="Cari produk, kategori, atau kode..." aria-label="Cari produk"
+                                        style="width:100%; padding:10px 38px 10px 36px; border-radius:9999px; border:1px solid rgba(15,23,42,0.06); background:#ffffff; box-shadow:0 6px 18px rgba(2,6,23,0.06); font-size:14px; color:#111827; outline:none; transition:box-shadow .15s, transform .08s;">
+                                    <button id="table-search-clear" type="button" aria-label="Bersihkan pencarian"
+                                        title="Bersihkan"
+                                        style="position:absolute; right:8px; top:50%; transform:translateY(-50%); border:0; background:transparent; color:#6B7280; font-size:14px; display:none; cursor:pointer;">
+                                        <i class="fas fa-times-circle"></i>
+                                    </button>
                                 </div>
 
-                                <a href="{{ route('produk.create') }}" class="btn-add-product">
-                                    <i class="fas fa-plus"></i>
+                                <a href="{{ route('produk.create') }}" class="btn-add-product"
+                                    style="display:inline-flex; align-items:center; gap:0.5rem; padding:8px 12px; border-radius:10px; background:#111827; color:#fff; text-decoration:none; font-weight:600; box-shadow:0 6px 18px rgba(17,24,39,0.08);">
+                                    <i class="fas fa-plus" style="font-size:13px;"></i>
                                     <span>Tambah Produk</span>
                                 </a>
                             </div>
                         </div>
                     </div>
+
+
 
                     <!-- Table Wrapper -->
                     <div class="table-wrapper">
