@@ -22,7 +22,7 @@
                 <ul class="nav-list">
                     <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}" class="nav-link" title="Dashboard">
-                            <span class="icon-wrapper"><i class="fas fa-th-large"></i></span>
+                            <span class="icon-wrapper"><i class="fas fa-home"></i></span>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
