@@ -77,47 +77,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Main Header Content -->
-                <div class="header-main-content">
-                    <div class="header-left">
-                        <div class="page-title-wrapper">
-                            <div class="page-icon-badge">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="page-title-group">
-                                <h1 class="page-title">Dashboard Overview</h1>
-                                <p class="page-subtitle">Pantau performa dan kelola produk Anda</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="header-right">
-                        <div class="header-quick-stats">
-                            <div class="quick-stat-pill">
-                                <i class="fas fa-box-open"></i>
-                                <div class="quick-stat-info">
-                                    <span class="quick-stat-value">{{ $totalProduk }}</span>
-                                    <span class="quick-stat-label">Produk</span>
-                                </div>
-                            </div>
-                            <div class="quick-stat-pill">
-                                <i class="fas fa-check-circle"></i>
-                                <div class="quick-stat-info">
-                                    <span class="quick-stat-value">{{ $produkTersedia }}</span>
-                                    <span class="quick-stat-label">Tersedia</span>
-                                </div>
-                            </div>
-                            <div class="quick-stat-pill">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <div class="quick-stat-info">
-                                    <span class="quick-stat-value">{{ $produkHabis }}</span>
-                                    <span class="quick-stat-label">Habis</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </header>
 
             <!-- Analytics Cards -->

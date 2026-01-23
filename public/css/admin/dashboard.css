@@ -663,129 +663,6 @@ body.admin-body {
     transform: translateY(2px);
 }
 
-/* Header Main Content */
-.header-main-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 2rem 1.75rem 2rem;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.header-left {
-    flex: 1;
-    min-width: 300px;
-}
-
-.page-title-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.page-icon-badge {
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    border-radius: 16px;
-    color: white;
-    font-size: 1.5rem;
-    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
-    flex-shrink: 0;
-}
-
-.page-title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.page-title {
-    font-size: 1.85rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-}
-
-.page-subtitle {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin: 0;
-    font-weight: 500;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-}
-
-/* Quick Stats Pills */
-.header-quick-stats {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.quick-stat-pill {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0.85rem 1.25rem;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
-    transition: all 0.2s ease;
-}
-
-.quick-stat-pill:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
-    border-color: rgba(59, 130, 246, 0.3);
-}
-
-.quick-stat-pill:nth-child(1) i {
-    color: #3b82f6;
-    font-size: 1.3rem;
-}
-
-.quick-stat-pill:nth-child(2) i {
-    color: #10b981;
-    font-size: 1.3rem;
-}
-
-.quick-stat-pill:nth-child(3) i {
-    color: #f59e0b;
-    font-size: 1.3rem;
-}
-
-.quick-stat-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.quick-stat-value {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1;
-}
-
-.quick-stat-label {
-    font-size: 0.75rem;
-    color: #64748b;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
 .analytics-section {
     margin-bottom: 2rem;
 }
@@ -1442,21 +1319,6 @@ body.admin-body {
     .charts-grid {
         grid-template-columns: 1fr;
     }
-
-    .header-main-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-    }
-
-    .header-quick-stats {
-        width: 100%;
-    }
-
-    .quick-stat-pill {
-        flex: 1;
-        min-width: 150px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1497,28 +1359,6 @@ body.admin-body {
         flex: 1;
     }
 
-    .header-main-content {
-        padding: 1.5rem;
-    }
-
-    .page-title {
-        font-size: 1.5rem;
-    }
-
-    .page-icon-badge {
-        width: 48px;
-        height: 48px;
-        font-size: 1.25rem;
-    }
-
-    .header-quick-stats {
-        width: 100%;
-    }
-
-    .quick-stat-pill {
-        flex: 1 1 100%;
-    }
-
     .analytics-grid {
         grid-template-columns: 1fr;
     }
@@ -1538,102 +1378,83 @@ body.admin-body {
     .table-tools {
         width: 100%;
         justify-content: stretch;
-
-        main-content {
-            padding: 1rem;
-        }
-
-        .top-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .header-main-content {
-            padding: 1.25rem;
-        }
-
-        .page-title {
-            font-size: 1.35rem !important;
-        }
-
-        .profile-info {
-            display: none;
-        }
-
-        .live-time-display .time-info {
-            display: none;
-        }
-
-        .time-icon-wrapper {
-            width: 40px;
-            height: 40px;
-        }
-
-        .header-quick-stats {
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .quick-stat-pill {
-            width: 100%;
-        }
-
-        .card-value {
-            font-size: 1.5rem;
-        }
-
-        .analytics-card {
-            padding: 1.25rem;
-        }
-
-        .table-card-header {
-            padding: 1rem;
-            width: 100%;
-        }
-
-        .btn-add-product {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .table-title {
-            font-size: 1.05rem;
-        }
-
-        .table-title-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-        }
-
-        .table-pagination {
-            padding: 1rem 1.25rem;
-        }
-
-        .products-table {
-            font-size: 0.85rem;
-        }
-
-        .products-table thead th,
-        .products-table tbody td {
-            padding: 0.75rem;
-        }
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    @media (max-width: 480px) {
-        .page-title {
-            font-size: 1.25rem !important;
-        }
+    .table-search {
+        width: 100%;
+        min-width: 0;
+    }
 
-        .card-value {
-            font-size: 1.5rem;
-        }
+    .modern-search {
+        width: 100%;
+    }
 
-        .analytics-card {
-            padding: 1.25rem;
-        }
+    .btn-add-product {
+        width: 100%;
+        justify-content: center;
+    }
 
-        .table-pagination {
-            padding: 0.9rem 1rem;
-        }
+    .table-title {
+        font-size: 1.05rem;
+    }
+
+    .table-title-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+    }
+
+    .table-pagination {
+        padding: 1rem 1.25rem;
+    }
+
+    .products-table {
+        font-size: 0.85rem;
+    }
+
+    .products-table thead th,
+    .products-table tbody td {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 1rem;
+    }
+
+    .top-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .live-time-display .time-info {
+        display: none;
+    }
+
+    .time-icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-value {
+        font-size: 1.5rem;
+    }
+
+    .analytics-card {
+        padding: 1.25rem;
+    }
+
+    .table-card-header {
+        padding: 1rem;
+    }
+
+    .table-pagination {
+        padding: 0.9rem 1rem;
     }
 }
