@@ -671,10 +671,7 @@ body.admin-body {
 .table-card-header {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid #e5eaf2;
-    background:
-        radial-gradient(900px 220px at 10% 0%, rgba(59, 130, 246, 0.10), transparent 60%),
-        radial-gradient(700px 180px at 90% 10%, rgba(16, 185, 129, 0.10), transparent 55%),
-        linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -811,44 +808,93 @@ body.admin-body {
     color: #94a3b8;
 }
 
-.table-search-input {
-    border: none;
-    outline: none;
+.table-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     width: 100%;
-    background: transparent;
-    color: #0f172a;
-    font-size: 0.92rem;
+    flex-wrap: wrap;
+}
+background:
+        radial-gradient(900px 220px at 10% 0%, rgba(59, 130, 246, 0.10), transparent 60%),
+        radial-gradient(700px 180px at 90% 10%, rgba(16, 185, 129, 0.10), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%);
+.modern-search {
+    position: relative;
+    width: 280px;
 }
 
-.table-search-input::placeholder {
-    color: #94a3b8;
+.table-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9CA3AF;
+    font-size: 14px;
+}
+
+/* More specific selector to avoid conflicts and ensure consistent pill styling */
+.modern-search .table-search-input,
+.table-header-right .modern-search .table-search-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 42px;
+    padding: 0 38px 0 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: linear-gradient(180deg, #ffffff, #fbfdff);
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
+    font-size: 14px;
+    color: #111827;
+    outline: none;
+    transition: box-shadow .15s, transform .08s, border-color .15s;
+    -webkit-appearance: none;
+}
+
+.modern-search .table-search-input::placeholder {
+    color: #9CA3AF;
     font-weight: 500;
 }
 
-.table-search:focus-within {
-    border-color: rgba(59, 130, 246, 0.45);
-    box-shadow:
-        0 14px 28px rgba(15, 23, 42, 0.06),
-        0 0 0 4px rgba(59, 130, 246, 0.12);
+.modern-search .table-search-input:focus {
+    border-color: rgba(59, 130, 246, 0.38);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.08);
+}
+
+.table-search-clear {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: #6B7280;
+    font-size: 14px;
+    display: none;
+    cursor: pointer;
 }
 
 .btn-add-product {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 0.78rem 1.6rem;
-    background: var(--primary);
-    color: white;
-    border-radius: 12px;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 42px;
+    padding: 0 24px;
+    border-radius: 999px;
+    background: #111827;
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.08);
+    font-size: 14px;
     transition: all var(--transition-fast);
-    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.28);
 }
 
 .btn-add-product:hover {
     background: var(--primary-dark);
+    /* Fallback or specific hover state */
     transform: translateY(-2px);
     box-shadow: 0 12px 20px rgba(59, 130, 246, 0.35);
 }

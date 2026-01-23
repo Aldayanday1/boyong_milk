@@ -135,9 +135,8 @@
                     <!-- Table Header -->
                     <div class="table-card-header">
                         <div class="table-header-left">
-                            <div
-                                style="display:flex; align-items:center; justify-content:space-between; gap:1rem; width:100%; flex-wrap:wrap;">
-                                <div class="table-title-row" style="display:flex; align-items:center; gap:0.75rem;">
+                            <div class="table-header-content">
+                                <div class="table-title-row">
                                     <div class="table-title-icon" aria-hidden="true">
                                         <i class="fas fa-boxes-stacked"></i>
                                     </div>
@@ -147,9 +146,8 @@
                                     </div>
                                 </div>
 
-                                <div class="table-meta" aria-label="Ringkasan data produk"
-                                    style="display:flex; align-items:center; gap:0.75rem;">
-                                    <span class="table-meta-pill" style="display:flex; align-items:center; gap:0.5rem;">
+                                <div class="table-meta" aria-label="Ringkasan data produk">
+                                    <span class="table-meta-pill">
                                         <i class="fas fa-layer-group" aria-hidden="true"></i>
                                         <span>Total:</span>
                                         <span style="font-weight:500;">
@@ -157,8 +155,7 @@
                                         </span>
                                     </span>
                                     <span class="table-meta-dot" aria-hidden="true"></span>
-                                    <span class="table-meta-pill table-meta-soft"
-                                        style="display:flex; align-items:center; gap:0.5rem;">
+                                    <span class="table-meta-pill table-meta-soft">
                                         <i class="fas fa-shield-halved" aria-hidden="true"></i>
                                         <span>Admin panel</span>
                                     </span>
@@ -167,23 +164,19 @@
                         </div>
 
                         <div class="table-header-right">
-                            <div class="table-tools" style="display:flex; align-items:center; gap:0.75rem;">
+                            <div class="table-tools">
                                 <!-- Modern Minimal Search -->
-                                <div class="modern-search" style="position:relative; width:280px;">
-                                    <i class="fas fa-search" aria-hidden="true"
-                                        style="position:absolute; left:16px; top:50%; transform:translateY(-50%); color:#9CA3AF; font-size:14px;"></i>
+                                <div class="modern-search">
+                                    <i class="fas fa-search table-search-icon" aria-hidden="true"></i>
                                     <input id="table-search-input" type="search" class="table-search-input"
-                                        placeholder="Cari produk..." aria-label="Cari produk"
-                                        style="width:100%; height:42px; padding:0 38px 0 42px; border-radius:999px; border:1px solid rgba(15,23,42,0.06); background:#ffffff; box-shadow:0 6px 18px rgba(2,6,23,0.06); font-size:14px; color:#111827; outline:none; transition:box-shadow .15s, transform .08s;">
-                                    <button id="table-search-clear" type="button" aria-label="Bersihkan pencarian"
-                                        title="Bersihkan"
-                                        style="position:absolute; right:12px; top:50%; transform:translateY(-50%); border:0; background:transparent; color:#6B7280; font-size:14px; display:none; cursor:pointer;">
+                                        placeholder="Cari produk..." aria-label="Cari produk">
+                                    <button id="table-search-clear" type="button" class="table-search-clear"
+                                        aria-label="Bersihkan pencarian" title="Bersihkan">
                                         <i class="fas fa-times-circle"></i>
                                     </button>
                                 </div>
 
-                                <a href="{{ route('produk.create') }}" class="btn-add-product"
-                                    style="display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; height:42px; padding:0 24px; border-radius:999px; background:#111827; color:#fff; text-decoration:none; font-weight:600; box-shadow:0 6px 18px rgba(17,24,39,0.08); font-size:14px;">
+                                <a href="{{ route('produk.create') }}" class="btn-add-product">
                                     <i class="fas fa-plus" style="font-size:13px;"></i>
                                     <span>Tambah Produk</span>
                                 </a>
