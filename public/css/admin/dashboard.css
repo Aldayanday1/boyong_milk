@@ -29,7 +29,7 @@
     --sidebar-bg: #1e293b;
     --sidebar-hover: #334155;
     --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
+    --transition-normal: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
@@ -57,7 +57,7 @@ body.admin-body {
     height: 100vh;
     background: #0f172a; /* Slate 900 */
     color: #cbd5e1; /* Slate 300 */
-    transition: width var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@ body.admin-body {
     align-items: center;
     gap: 12px;
     overflow: hidden;
-    transition: all var(--transition-normal);
+    transition: opacity 0.3s ease 0.1s, visibility 0.3s ease 0.1s;
 }
 
 .sidebar.collapsed .brand-wrapper {
@@ -134,7 +134,7 @@ body.admin-body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all 0.3s ease;
 }
 
 .btn-toggle:hover {
@@ -152,6 +152,11 @@ body.admin-body {
 
 .sidebar.collapsed .btn-toggle i {
     transform: rotate(180deg);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-toggle i {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Navigation */
@@ -187,7 +192,7 @@ body.admin-body {
     margin-bottom: 0.75rem;
     height: 20px;
     line-height: 20px;
-    transition: opacity var(--transition-normal);
+    transition: opacity 0.3s ease;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -251,7 +256,7 @@ body.admin-body {
     font-size: 0.95rem;
     white-space: nowrap;
     opacity: 1;
-    transition: opacity var(--transition-normal);
+    transition: opacity 0.3s ease;
 }
 
 .sidebar.collapsed .nav-text {
@@ -261,12 +266,12 @@ body.admin-body {
 }
 
 .sidebar.collapsed .nav-link {
-    justify-content: center;
-    padding: 0;
+    justify-content: flex-start;
+    padding: 0 12px;
 }
 
 .sidebar.collapsed .nav-item {
-    padding: 0 12px;
+    padding: 0 1rem;
 }
 
 .sidebar.collapsed .icon-wrapper {
@@ -275,14 +280,14 @@ body.admin-body {
 
 /* User Profile Footer */
 .sidebar-footer {
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     background: rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
 }
 
 .sidebar.collapsed .sidebar-footer {
-    padding: 1.25rem 1rem;
+    padding: 1.25rem;
 }
 
 .user-card {
@@ -295,7 +300,7 @@ body.admin-body {
 }
 
 .sidebar.collapsed .user-card {
-    flex-direction: column;
+    justify-content: flex-start;
     gap: 0;
 }
 
@@ -390,7 +395,7 @@ body.admin-body {
     margin-left: var(--sidebar-width);
     flex: 1;
     padding: 2rem;
-    transition: margin-left var(--transition-normal);
+    transition: margin-left 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     width: calc(100% - var(--sidebar-width));
 }
 
