@@ -690,13 +690,16 @@
                         }
                     },
                     yaxis: {
+                        min: 0,
+                        max: 120,
+                        tickAmount: 6,
                         labels: {
                             style: {
                                 fontSize: '12px'
                             },
-                            // formatter: function(val) {
-                            //     return Math.floor(val) + ' unit';
-                            // }
+                            formatter: function(val) {
+                                return Math.round(val);
+                            }
                         }
                     },
                     colors: ['#3b82f6'],
