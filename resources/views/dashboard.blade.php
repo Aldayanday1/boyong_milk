@@ -373,6 +373,7 @@
         // Store chart instances globally
         let productChart = null;
         let statusChart = null;
+        let stockChart = null;
 
         document.addEventListener("DOMContentLoaded", function() {
             // Sidebar Toggle - Start collapsed by default
@@ -389,6 +390,31 @@
                 toggleBtn.addEventListener('click', function() {
                     sidebar.classList.toggle('collapsed');
                     mainContent.classList.toggle('expanded');
+
+                    // After the sidebar CSS transition, trigger chart resize/reflow
+                    setTimeout(function() {
+                        // Dispatch a window resize event (ApexCharts listens to this)
+                        try {
+                            window.dispatchEvent(new Event('resize'));
+                        } catch (e) {
+                            // older browsers fallback
+                            var evt = document.createEvent('UIEvents');
+                            evt.initUIEvent('resize', true, false, window, 0);
+                            window.dispatchEvent(evt);
+                        }
+
+                        // Also try to call resize() directly if available
+                        try {
+                            if (productChart && typeof productChart.resize === 'function')
+                                productChart.resize();
+                            if (statusChart && typeof statusChart.resize === 'function') statusChart
+                                .resize();
+                            if (stockChart && typeof stockChart.resize === 'function') stockChart
+                                .resize();
+                        } catch (e) {
+                            // ignore any errors from resize calls
+                        }
+                    }, 340); // match typical CSS transition duration
                 });
             }
 
@@ -508,7 +534,8 @@
                             show: false
                         }
                     },
-                    colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+                    /* unified blue → purple tone scale (subtle single-family variations) */
+                    colors: ['#3b82f6', '#5b7bf0', '#6f64e8', '#7c4de0', '#8b5cf6'],
                     legend: {
                         show: false
                     },
@@ -727,7 +754,7 @@
                     }
                 };
 
-                const stockChart = new ApexCharts(stockCtx, stockOptions);
+                stockChart = new ApexCharts(stockCtx, stockOptions);
                 stockChart.render();
             }
         });
