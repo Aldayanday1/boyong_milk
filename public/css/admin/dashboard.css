@@ -734,27 +734,31 @@ body.admin-body {
 }
 
 .card-blue .card-icon {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    /* Primary: bright blue -> slightly muted blue */
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
 }
 
 .card-blue::before {
-    background: var(--primary);
+    background: #3b82f6;
 }
 
 .card-green .card-icon {
-    background: linear-gradient(135deg, #10b981, #059669);
+    /* Secondary card: bluish-indigo (keeps in same family as primary)
+       used for "Produk Tersedia" */
+    background: linear-gradient(135deg, #5b7bf0, #6f64e8);
 }
 
 .card-green::before {
-    background: var(--secondary);
+    background: #5b7bf0;
 }
 
 .card-red .card-icon {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
+    /* Alert card: deep indigo for stronger contrast ("Stok Habis") */
+    background: linear-gradient(135deg, #4338ca, #5b21b6);
 }
 
 .card-red::before {
-    background: var(--danger);
+    background: #4338ca;
 }
 
 .card-purple .card-icon {
@@ -767,11 +771,12 @@ body.admin-body {
 
 /* Warning card for Pre-Order */
 .card-warning .card-icon {
-    background: linear-gradient(135deg, #f59e0b, #f97316);
+    /* Pre-order / warning styled as purple tint to match scheme */
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
 }
 
 .card-warning::before {
-    background: var(--warning);
+    background: #7c3aed;
 }
 
 .card-content {
