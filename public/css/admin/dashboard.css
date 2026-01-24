@@ -55,16 +55,17 @@ body.admin-body {
     top: 0;
     width: var(--sidebar-width);
     height: 100vh;
-    background: #0f172a;
-    /* Slate 900 */
-    color: #cbd5e1;
+    /* layered dark background with subtle vignette */
+    background: radial-gradient(1200px 400px at 10% 10%, rgba(59,130,246,0.03), transparent 10%),
+                linear-gradient(180deg, #071025 0%, #0f172a 50%, #0b1220 100%);
+    color: #d1d9e6;
     /* Slate 300 */
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 8px 0 40px rgba(2,6,23,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .sidebar.collapsed {
@@ -140,13 +141,14 @@ body.admin-body {
 }
 
 .btn-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
     color: #ffffff;
+    transform: translateX(2px);
 }
 
 .sidebar.collapsed .btn-toggle {
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-color: transparent;
 }
 
@@ -223,20 +225,33 @@ body.admin-body {
     border-radius: 12px;
     color: #94a3b8;
     text-decoration: none;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 220ms cubic-bezier(0.2,0,0.2,1), background 220ms ease, color 220ms ease;
     position: relative;
     overflow: hidden;
 }
 
 .nav-link:hover {
-    color: #f1f5f9;
-    background: rgba(255, 255, 255, 0.05);
+    color: #f8fbff;
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateX(6px);
 }
 
 .nav-item.active .nav-link {
-    background: var(--primary);
+    background: linear-gradient(90deg, rgba(59,130,246,0.14), rgba(124,58,237,0.06));
     color: #ffffff;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.12);
+}
+
+/* active left accent */
+.nav-item.active .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 4px;
+    background: linear-gradient(180deg, #3b82f6, #7c3aed);
+    border-radius: 8px;
 }
 
 .icon-wrapper {
@@ -248,6 +263,17 @@ body.admin-body {
     font-size: 1.15rem;
     flex-shrink: 0;
     transition: transform var(--transition-fast);
+}
+
+.nav-link .icon-wrapper {
+    transition: background 220ms ease, transform 220ms ease;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+.nav-link:hover .icon-wrapper {
+    background: rgba(255,255,255,0.03);
+    transform: translateX(4px) scale(1.02);
 }
 
 .nav-text {
@@ -282,8 +308,8 @@ body.admin-body {
 /* User Profile Footer */
 .sidebar-footer {
     padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
     flex-shrink: 0;
 }
 
@@ -301,6 +327,35 @@ body.admin-body {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
+}
+
+.user-card {
+    padding: 0.6rem;
+    background: linear-gradient(90deg, rgba(59,130,246,0.06), rgba(124,58,237,0.03));
+    box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+
+.user-avatar {
+    background: linear-gradient(135deg, #3b82f6, #7c3aed);
+    border-radius: 10px;
+}
+
+.user-actions .btn-logout {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* improved scrollbar styling for sidebar */
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #2b3b58, #1b2740);
+    border-radius: 6px;
+}
+
+/* subtle divider between sections */
+.nav-section + .nav-section {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.02);
 }
 
 .sidebar.collapsed .user-card {
@@ -440,7 +495,7 @@ body.admin-body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+    /* background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%); */
 }
 
 /* Header Top Bar */
