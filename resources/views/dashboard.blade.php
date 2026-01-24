@@ -162,6 +162,16 @@
                             <div id="statusChart"></div>
                         </div>
                     </div>
+
+                    <!-- Chart 3: Total Stok per Kategori -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Total Stok per Kategori</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div id="stockChart"></div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -625,6 +635,97 @@
 
                 statusChart = new ApexCharts(statusCtx, statusOptions);
                 statusChart.render();
+            }
+
+            // ApexCharts - Total Stok per Kategori (Area Chart)
+            const stockCtx = document.getElementById('stockChart');
+            if (stockCtx) {
+                const stockOptions = {
+                    series: [{
+                        name: 'Total Stok',
+                        data: {!! json_encode($stokPerKategori) !!}
+                    }],
+                    chart: {
+                        type: 'area',
+                        height: 300,
+                        width: '95%',
+                        toolbar: {
+                            show: false
+                        },
+                        animations: {
+                            enabled: true,
+                            easing: 'easeinout',
+                            speed: 1500,
+                            animateGradually: {
+                                enabled: true,
+                                delay: 400
+                            }
+                        },
+                        redrawOnParentResize: false,
+                        redrawOnWindowResize: false
+                    },
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                        width: 3
+                    },
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            shadeIntensity: 1,
+                            opacityFrom: 0.7,
+                            opacityTo: 0.2,
+                            stops: [0, 90, 100]
+                        }
+                    },
+                    xaxis: {
+                        categories: {!! json_encode($stokKategoriLabels) !!},
+                        labels: {
+                            style: {
+                                fontSize: '12px',
+                                fontWeight: 500
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '12px'
+                            },
+                            // formatter: function(val) {
+                            //     return Math.floor(val) + ' unit';
+                            // }
+                        }
+                    },
+                    colors: ['#3b82f6'],
+                    grid: {
+                        borderColor: '#f3f4f6',
+                        strokeDashArray: 4,
+                        xaxis: {
+                            lines: {
+                                show: false
+                            }
+                        },
+                        yaxis: {
+                            lines: {
+                                show: true
+                            }
+                        }
+                    },
+                    tooltip: {
+                        theme: 'dark',
+                        y: {
+                            formatter: function(val) {
+                                return val + ' unit stok';
+                            }
+                        }
+                    }
+                };
+
+                const stockChart = new ApexCharts(stockCtx, stockOptions);
+                stockChart.render();
             }
         });
     </script>

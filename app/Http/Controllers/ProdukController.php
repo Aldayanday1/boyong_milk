@@ -47,6 +47,17 @@ class ProdukController extends Controller
             ->pluck('kategori')
             ->toArray();
 
+        // Chart Data - Total Stok per Kategori
+        $stokPerKategori = Produk::selectRaw('kategori, SUM(stok) as total_stok')
+            ->groupBy('kategori')
+            ->pluck('total_stok')
+            ->toArray();
+        
+        $stokKategoriLabels = Produk::selectRaw('kategori, SUM(stok) as total_stok')
+            ->groupBy('kategori')
+            ->pluck('kategori')
+            ->toArray();
+
         // Produk list with pagination
         $produks = Produk::orderBy('created_at', 'desc')->paginate(5);
 
@@ -58,7 +69,9 @@ class ProdukController extends Controller
             'produkPreOrder',
             // 'totalStok',
             'kategoriData',
-            'kategoriLabels'
+            'kategoriLabels',
+            'stokPerKategori',
+            'stokKategoriLabels'
         ));
     }
 
