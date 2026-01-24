@@ -815,6 +815,8 @@ body.admin-body {
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .chart-card:nth-child(1) {
@@ -864,8 +866,23 @@ body.admin-body {
 }
 
 .chart-body>div {
-    width: 100%;
-    max-width: 100%;
+    width: 95%;
+    max-width: 720px;
+}
+
+/* Ensure ApexCharts root and SVG elements are centered inside the chart container
+   This addresses layout shifts when the page width changes (e.g., sidebar open/close) */
+.chart-body>div {
+    margin: 0 auto;
+}
+
+.chart-body .apexcharts-canvas,
+.chart-body .apexcharts-inner,
+.chart-body svg {
+    margin: 0 auto !important;
+    left: auto !important;
+    right: auto !important;
+    display: block;
 }
 
 .table-section {
