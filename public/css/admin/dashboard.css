@@ -1109,29 +1109,34 @@ body.admin-body {
     height: 42px;
     padding: 0 24px;
     border-radius: 999px;
-    background: #0f172a;
+    background: #162033;
+    /* slightly darker so overlay is subtle */
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.08);
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
     font-size: 14px;
-    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s ease;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s ease, filter 0.28s ease;
     position: relative;
     overflow: hidden;
     letter-spacing: 0.01em;
+    will-change: transform, box-shadow, filter;
 }
 
-/* gradient overlay for smooth transition (opacity animates) */
+/* gradient overlay kept semi-transparent so hover doesn't "jump" colors */
 .btn-add-product::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    background: linear-gradient(135deg,
+            rgba(59, 130, 246, 0.14) 0%,
+            rgba(37, 99, 235, 0.14) 100%);
     opacity: 0;
     border-radius: 999px;
-    transition: opacity 0.32s cubic-bezier(0.2, 0.9, 0.2, 1);
+    transition: opacity 0.28s cubic-bezier(0.2, 0.9, 0.2, 1);
     pointer-events: none;
     z-index: 0;
+    mix-blend-mode: normal;
 }
 
 /* keep inner content above the overlay */
