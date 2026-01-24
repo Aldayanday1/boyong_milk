@@ -723,12 +723,7 @@
                         max: 120,
                         tickAmount: 6,
                         labels: {
-                            style: {
-                                fontSize: '12px'
-                            },
-                            formatter: function(val) {
-                                return Math.round(val);
-                            }
+                            show: false
                         }
                     },
                     colors: ['#3b82f6'],
