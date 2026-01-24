@@ -592,7 +592,8 @@
                         redrawOnWindowResize: false
                     },
                     labels: ['Tersedia', 'Habis', 'Pre-Order'],
-                    colors: ['#10b981', '#ef4444', '#f59e0b'],
+                    /* sync with product chart: blue → purple family (clean single-family tones) */
+                    colors: ['#3b82f6', '#6f64e8', '#8b5cf6'],
                     plotOptions: {
                         pie: {
                             startAngle: 0,
