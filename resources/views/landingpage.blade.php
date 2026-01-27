@@ -40,6 +40,47 @@
     <link rel="stylesheet" href="{{ asset('css/landing/footer.css') }}">
 
     @vite('resources/css/app.css')
+    <style>
+        /* Inline CSS overrides for hero redesign */
+        .hero-visual-redesign {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 520px;
+            margin-left: auto;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.85));
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(13,38,76,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+            padding: 48px 36px;
+            position: relative;
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-icon-container {
+            width: 260px;
+            height: 260px;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(120% 100% at 10% 10%, #f7fbff 0%, #eef6ff 30%, #ffffff 100%);
+            border-radius: 32px;
+            box-shadow: 0 18px 40px rgba(17,40,80,0.08);
+            transition: transform 300ms ease, box-shadow 300ms ease;
+        }
+
+        .hero-icon-container:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 28px 60px rgba(17,40,80,0.12); }
+
+        .hero-icon { width: 60%; height: 60%; fill: none; stroke: #2563eb; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+        .hero-visual-caption { margin-top: 20px; text-align: center; color: #0f172a; }
+        .hero-visual-caption h4 { margin: 0 0 6px 0; font-size: 1.05rem; font-weight: 700; }
+        .hero-visual-caption p { margin: 0; font-size: 0.9rem; color: #475569; }
+
+        @media (max-width: 992px) { .hero-visual-redesign { max-width: 420px; padding: 36px; } .hero-icon-container { width: 200px; height: 200px; } }
+        @media (max-width: 768px) { .hero-visual-redesign { margin: 30px auto 0; } .hero-icon-container { width: 160px; height: 160px; } .hero-icon { width: 70%; height: 70%; stroke-width: 1.4; } }
+    </style>
 </head>
 
 <body>
@@ -110,47 +151,23 @@
                 </div>
             </div>
 
-            <!-- Right: Visual with Floating Cards -->
-            <div class="hero-visual fade-up">
-                <!-- Background Cow Image -->
-                <div class="hero-cow-bg">
-                    <img src="{{ asset('images/bg-landing-shepi.jpeg') }}" alt="Sapi Boyong">
+            <!-- Right: Redesigned visual - single large SVG icon -->
+            <div class="hero-visual hero-visual-redesign fade-up" aria-hidden="false">
+                <div class="hero-icon-container" role="img" aria-label="Ikon susu Boyong">
+                    <!-- Simple modern milk bottle SVG icon (single-stroke friendly) -->
+                    <svg class="hero-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M22 6h20v6h-20z" />
+                        <path d="M28 12v6" />
+                        <path d="M36 12v6" />
+                        <rect x="18" y="18" width="28" height="36" rx="6" ry="6" />
+                        <path d="M26 28c2-4 6-6 12-6s10 2 12 6" />
+                        <path d="M24 44c3 1.5 6 2.5 8 2.5s5-1 8-2.5" />
+                    </svg>
                 </div>
 
-                <!-- Main Product Image -->
-                <div class="hero-image">
-                    <img src="{{ asset('images/milk-2.jpeg') }}" alt="Produk Boyong Milk">
-                </div>
-
-                <!-- Floating Cards -->
-                <div class="hero-floating-card card-1">
-                    <div class="hero-card-icon blue">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div class="hero-card-content">
-                        <h4>100% Segar</h4>
-                        <p>Kualitas Terjamin</p>
-                    </div>
-                </div>
-
-                <div class="hero-floating-card card-2">
-                    <div class="hero-card-icon green">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <div class="hero-card-content">
-                        <h4>Alami</h4>
-                        <p>Tanpa Pengawet</p>
-                    </div>
-                </div>
-
-                <div class="hero-floating-card card-3">
-                    <div class="hero-card-icon orange">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="hero-card-content">
-                        <h4>Produk Lokal</h4>
-                        <p>Langsung dari Boyong</p>
-                    </div>
+                <div class="hero-visual-caption">
+                    <h4>100% Lokal & Segar</h4>
+                    <p>Produk alami langsung dari Padukuhan Boyong</p>
                 </div>
             </div>
         </div>

@@ -1,233 +1,325 @@
 <x-app-layout>
-    {{-- <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Tambah Produk') }}
-        </h2>
-    </x-slot> --}}
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin/create_page.css') }}">
 
-    <div class="py-10">
-        <div class="max-w-lg px-6 mx-auto lg:px-6">
-            <div class="overflow-hidden bg-white shadow-lg dark:bg-gray-800 sm:rounded-lg">
-                <div class="p-4 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('produk.store') }}" enctype="multipart/form-data"
-                        class="p-4 space-y-4"> <!-- Kurangi padding form -->
-                        @csrf
-
-                        <h2 class="mb-5 text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                            {{ __('Tambah Produk') }}
-                        </h2>
-
-                        <!-- Nama Produk -->
-                        <div>
-                            <label for="nama"
-                                class="block mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Nama
-                                Produk</label>
-                            <input type="text" name="nama" id="nama" class="input-field"
-                                placeholder="Masukkan nama produk" required>
-                        </div>
-
-                        <!-- Deskripsi -->
-                        <div>
-                            <label for="deskripsi"
-                                class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" class="h-20 input-field" placeholder="Tambahkan deskripsi produk..." required></textarea>
-                        </div>
-
-                        <!-- Stok & Harga -->
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label for="stok"
-                                    class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Stok</label>
-                                <input type="number" name="stok" id="stok" class="input-field"
-                                    placeholder="Jumlah stok" required>
-                            </div>
-                            <div>
-                                <label for="harga"
-                                    class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Harga</label>
-                                <input type="number" name="harga" id="harga" class="input-field"
-                                    placeholder="Harga produk" required>
-                            </div>
-                        </div>
-
-                        <!-- Kategori -->
-                        <div>
-                            <label for="kategori"
-                                class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Kategori</label>
-                            <input type="text" name="kategori" id="kategori" class="input-field"
-                                placeholder="Masukkan kategori produk" required>
-                        </div>
-
-                        <!-- Gambar Produk -->
-                        <div class="mt-3">
-                            <label for="gambar"
-                                class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Gambar
-                                Produk</label>
-
-                            <div id="drop-area"
-                                class="relative flex flex-col items-center justify-center w-full h-48 p-4 transition border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:border-blue-500">
-                                <svg class="w-12 h-12 text-gray-400 transition dark:text-gray-200" id="upload-icon"
-                                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 16l3.586-3.586a2 2 0 012.828 0L14 18m0 0l3.586-3.586a2 2 0 012.828 0L21 16M14 18l3 3m-6 0h6">
-                                    </path>
-                                </svg>
-                                <p id="upload-text"
-                                    class="mt-2 text-sm text-center text-gray-500 transition dark:text-gray-300">
-                                    Klik atau seret gambar ke sini
-                                </p>
-                                <input type="file" name="gambar" id="gambar" class="absolute opacity-0"
-                                    accept="image/*" onchange="previewImage(event)" required>
-                            </div>
-
-                            <!-- Tambahan Notes: Jenis file yang diperbolehkan -->
-                            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                                * Hanya format gambar <strong>JPG, JPEG, dan PNG</strong> yang diperbolehkan.
-                            </p>
-
-                            <!-- Preview Gambar -->
-                            <div id="preview-container" class="hidden mt-3">
-                                <p class="text-sm text-gray-500">Preview Gambar:</p>
-                                <img id="preview-image" class="object-cover w-40 h-40 mt-2 rounded-lg shadow-md"
-                                    src="" alt="Preview">
-                            </div>
-
-                            @error('gambar')
-                                <div class="mt-1 text-sm error-text">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Tanggal Produksi & Kadaluarsa -->
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label for="tgl_produksi"
-                                    class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal
-                                    Produksi</label>
-                                <input type="date" name="tgl_produksi" id="tgl_produksi" class="input-field"
-                                    required>
-                            </div>
-                            <div>
-                                <label for="tgl_kadaluarsa"
-                                    class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Tanggal
-                                    Kadaluarsa</label>
-                                <input type="date" name="tgl_kadaluarsa" id="tgl_kadaluarsa" class="input-field"
-                                    required>
-                            </div>
-                        </div>
-
-                        <!-- Berat / Isi Bersih -->
-                        <div>
-                            <label for="berat_isi_bersih"
-                                class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Berat / Isi
-                                Bersih</label>
-                            <input type="text" name="berat_isi_bersih" id="berat_isi_bersih" class="input-field"
-                                placeholder="Contoh: 500g, 1L" required>
-                        </div>
-
-                        <!-- Status Produk -->
-                        <div>
-                            <label for="status_produk"
-                                class="block mt-3 mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">Status
-                                Produk</label>
-                            <select name="status_produk" id="status_produk" class="input-field" required>
-                                <option value="tersedia">Tersedia</option>
-                                <option value="habis">Habis</option>
-                                <option value="pre_order">Pre Order</option>
-                            </select>
-                        </div>
-
-                        <!-- Tombol -->
-                        <div class="flex justify-center gap-4 mt-4">
-                            <button type="button" onclick="window.history.back()"
-                                class="px-4 py-2 text-gray-700 bg-gray-300 rounded-lg hover:bg-gray-400">
-                                Kembali
-                            </button>
-                            <button type="submit" class="submit-btn">
-                                Simpan Produk
-                            </button>
-                        </div>
-                    </form>
+    <div class="create-page-wrapper">
+        <div class="create-page-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-content">
+                    <div class="page-header-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <div class="page-header-text">
+                        <h1 class="page-title">Tambah Produk Baru</h1>
+                        <p class="page-subtitle">Lengkapi formulir di bawah untuk menambahkan produk ke katalog</p>
+                    </div>
                 </div>
+                <button type="button" onclick="window.history.back()" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Kembali</span>
+                </button>
             </div>
+
+            <form method="POST" action="{{ route('produk.store') }}" enctype="multipart/form-data" class="modern-form">
+                @csrf
+
+                <!-- Form Grid: 2 Columns -->
+                <div class="form-grid">
+                    <!-- Left Column -->
+                    <div class="form-column">
+                        <!-- Section 1: Informasi Dasar -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <h3 class="section-title">Informasi Dasar</h3>
+                            </div>
+                            <div class="section-content">
+                                <!-- Nama Produk -->
+                                <div class="form-group">
+                                    <label for="nama" class="form-label">
+                                        <i class="fas fa-box"></i>
+                                        Nama Produk
+                                    </label>
+                                    <input type="text" name="nama" id="nama" class="form-input" 
+                                           placeholder="Masukkan nama produk" required>
+                                </div>
+
+                                <!-- Kategori -->
+                                <div class="form-group">
+                                    <label for="kategori" class="form-label">
+                                        <i class="fas fa-tag"></i>
+                                        Kategori
+                                    </label>
+                                    <input type="text" name="kategori" id="kategori" class="form-input" 
+                                           placeholder="Contoh: Susu Segar, Es Krim" required>
+                                </div>
+
+                                <!-- Deskripsi -->
+                                <div class="form-group">
+                                    <label for="deskripsi" class="form-label">
+                                        <i class="fas fa-align-left"></i>
+                                        Deskripsi Produk
+                                    </label>
+                                    <textarea name="deskripsi" id="deskripsi" class="form-textarea" rows="4"
+                                              placeholder="Deskripsikan produk Anda dengan detail..." required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Harga & Stok -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <h3 class="section-title">Harga & Stok</h3>
+                            </div>
+                            <div class="section-content">
+                                <div class="form-row">
+                                    <!-- Harga -->
+                                    <div class="form-group">
+                                        <label for="harga" class="form-label">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                            Harga (Rp)
+                                        </label>
+                                        <input type="number" name="harga" id="harga" class="form-input" 
+                                               placeholder="0" min="0" required>
+                                    </div>
+
+                                    <!-- Stok -->
+                                    <div class="form-group">
+                                        <label for="stok" class="form-label">
+                                            <i class="fas fa-boxes"></i>
+                                            Stok Tersedia
+                                        </label>
+                                        <input type="number" name="stok" id="stok" class="form-input" 
+                                               placeholder="0" min="0" required>
+                                    </div>
+                                </div>
+
+                                <!-- Status Produk -->
+                                <div class="form-group">
+                                    <label for="status_produk" class="form-label">
+                                        <i class="fas fa-circle-check"></i>
+                                        Status Produk
+                                    </label>
+                                    <select name="status_produk" id="status_produk" class="form-select" required>
+                                        <option value="">Pilih Status</option>
+                                        <option value="tersedia">Tersedia</option>
+                                        <option value="habis">Habis</option>
+                                        <option value="pre_order">Pre Order</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="form-column">
+
+                        <!-- Section 3: Media Upload -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <h3 class="section-title">Gambar Produk</h3>
+                            </div>
+                            <div class="section-content">
+                                <div class="upload-area" id="drop-area">
+                                    <div class="upload-content">
+                                        <div class="upload-icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                        </div>
+                                        <h4 class="upload-title">Upload Gambar</h4>
+                                        <p class="upload-text" id="upload-text">
+                                            Drag & drop atau klik untuk pilih file
+                                        </p>
+                                        <div class="upload-formats">
+                                            <span class="format-badge">JPG</span>
+                                            <span class="format-badge">JPEG</span>
+                                            <span class="format-badge">PNG</span>
+                                        </div>
+                                        <input type="file" name="gambar" id="gambar" class="file-input-hidden" 
+                                               accept="image/*" required>
+                                    </div>
+                                    
+                                    <!-- Preview Container -->
+                                    <div id="preview-container" class="preview-container hidden">
+                                        <img id="preview-image" class="preview-image" src="" alt="Preview">
+                                        <button type="button" class="btn-remove-image" onclick="removeImage()">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @error('gambar')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Detail Produk -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </div>
+                                <h3 class="section-title">Detail Produk</h3>
+                            </div>
+                            <div class="section-content">
+                                <!-- Berat / Isi Bersih -->
+                                <div class="form-group">
+                                    <label for="berat_isi_bersih" class="form-label">
+                                        <i class="fas fa-weight-hanging"></i>
+                                        Berat / Isi Bersih
+                                    </label>
+                                    <input type="text" name="berat_isi_bersih" id="berat_isi_bersih" 
+                                           class="form-input" placeholder="Contoh: 500g, 1L, 250ml" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- Tanggal Produksi -->
+                                    <div class="form-group">
+                                        <label for="tgl_produksi" class="form-label">
+                                            <i class="fas fa-calendar-plus"></i>
+                                            Tanggal Produksi
+                                        </label>
+                                        <input type="date" name="tgl_produksi" id="tgl_produksi" 
+                                               class="form-input" required>
+                                    </div>
+
+                                    <!-- Tanggal Kadaluarsa -->
+                                    <div class="form-group">
+                                        <label for="tgl_kadaluarsa" class="form-label">
+                                            <i class="fas fa-calendar-times"></i>
+                                            Tanggal Kadaluarsa
+                                        </label>
+                                        <input type="date" name="tgl_kadaluarsa" id="tgl_kadaluarsa" 
+                                               class="form-input" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" onclick="window.history.back()" class="btn-secondary">
+                        <i class="fas fa-times"></i>
+                        <span>Batal</span>
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i>
+                        <span>Simpan Produk</span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
     <script>
+        // Validate file type
         function validateFile(file) {
             const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
             if (!file || !allowedTypes.includes(file.type)) {
-                alert("Format file tidak didukung! Harap unggah file berformat JPG, JPEG, atau PNG.");
-                return false; // File tidak valid
+                showNotification("Format file tidak didukung! Harap unggah file JPG, JPEG, atau PNG.", "error");
+                return false;
             }
-            return true; // File valid
+            return true;
         }
 
+        // Preview uploaded image
         function previewImage(file) {
             const previewImage = document.getElementById("preview-image");
             const previewContainer = document.getElementById("preview-container");
+            const uploadContent = document.querySelector(".upload-content");
 
-            // Jika file valid, tampilkan preview
             const reader = new FileReader();
             reader.onload = function(e) {
                 previewImage.src = e.target.result;
                 previewContainer.classList.remove("hidden");
+                uploadContent.style.display = "none";
             };
             reader.readAsDataURL(file);
         }
 
-        // Menangani perubahan file dari input manual
-        document.getElementById("gambar").addEventListener("change", function(event) {
-            const file = event.target.files[0];
+        // Remove uploaded image
+        function removeImage() {
+            const previewContainer = document.getElementById("preview-container");
+            const uploadContent = document.querySelector(".upload-content");
+            const fileInput = document.getElementById("gambar");
+            
+            previewContainer.classList.add("hidden");
+            uploadContent.style.display = "flex";
+            fileInput.value = "";
+        }
 
-            // Validasi dulu, baru preview
-            if (validateFile(file)) {
-                previewImage(file);
-            } else {
-                // Sembunyikan preview jika file tidak valid
-                document.getElementById("preview-container").classList.add("hidden");
-            }
-        });
+        // Show notification
+        function showNotification(message, type = "info") {
+            // Simple alert for now, can be upgraded to toast notification
+            alert(message);
+        }
 
-        // Menangani event drag & drop
-        const dropArea = document.getElementById("drop-area");
+        // Initialize drag & drop
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropArea = document.getElementById("drop-area");
+            const fileInput = document.getElementById("gambar");
 
-        dropArea.addEventListener("dragover", function(event) {
-            event.preventDefault(); // Mencegah default browser membuka file
-            dropArea.classList.add("drag-over"); // Tambahkan efek visual
-        });
+            // Click to upload
+            dropArea.addEventListener("click", function(e) {
+                if (!e.target.closest(".btn-remove-image")) {
+                    fileInput.click();
+                }
+            });
 
-        dropArea.addEventListener("dragleave", function() {
-            dropArea.classList.remove("drag-over"); // Hapus efek jika keluar dari area
-        });
+            // File input change
+            fileInput.addEventListener("change", function(e) {
+                const file = e.target.files[0];
+                if (file && validateFile(file)) {
+                    previewImage(file);
+                }
+            });
 
-        dropArea.addEventListener("drop", function(event) {
-            event.preventDefault(); // Mencegah default behavior
-            dropArea.classList.remove("drag-over"); // Hapus efek saat gambar dijatuhkan
+            // Drag over
+            dropArea.addEventListener("dragover", function(e) {
+                e.preventDefault();
+                dropArea.classList.add("drag-active");
+            });
 
-            const file = event.dataTransfer.files[0];
+            // Drag leave
+            dropArea.addEventListener("dragleave", function(e) {
+                e.preventDefault();
+                dropArea.classList.remove("drag-active");
+            });
 
-            // Set file input agar dikirim ke backend
-            document.getElementById("gambar").files = event.dataTransfer.files;
+            // Drop
+            dropArea.addEventListener("drop", function(e) {
+                e.preventDefault();
+                dropArea.classList.remove("drag-active");
+                
+                const file = e.dataTransfer.files[0];
+                if (file) {
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    fileInput.files = dataTransfer.files;
+                    
+                    if (validateFile(file)) {
+                        previewImage(file);
+                    }
+                }
+            });
 
-            // Validasi dulu, baru preview
-            if (validateFile(file)) {
-                previewImage(file);
-            } else {
-                // Sembunyikan preview jika file tidak valid
-                document.getElementById("preview-container").classList.add("hidden");
-            }
-        });
-
-        // Menangani klik untuk memilih file
-        document.getElementById("drop-area").addEventListener("click", function(event) {
-            // Pastikan event hanya dieksekusi sekali tanpa menggandakan pemanggilan file picker
-            if (event.target.id === "drop-area") {
-                document.getElementById("gambar").click();
-            }
+            // Form validation animation
+            const form = document.querySelector(".modern-form");
+            form.addEventListener("submit", function(e) {
+                const submitBtn = form.querySelector(".btn-primary");
+                submitBtn.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i><span>Menyimpan...</span>';
+                submitBtn.disabled = true;
+            });
         });
     </script>
 

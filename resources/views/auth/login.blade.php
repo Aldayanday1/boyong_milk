@@ -25,9 +25,9 @@
         <!-- Left Side - Branding -->
         <div class="login-left">
             <div class="login-left-content">
-                <div class="brand-logo">
-                    <img src="{{ asset('images/logo_boyong.png') }}" alt="Boyong Milk Logo">
-                </div>
+                {{-- <div class="brand-logo"> --}}
+                <img src="{{ asset('images/logo_boyong.png') }}" alt="Boyong Milk Logo" style="width: 6rem">
+                {{-- </div> --}}
 
                 <h1 class="brand-title">Boyong Milk</h1>
                 <p class="brand-subtitle">Sistem Administrasi Produk</p>
@@ -73,6 +73,8 @@
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
         </div>
 
         <!-- Right Side - Login Form -->
@@ -84,9 +86,9 @@
                 </a>
 
                 <div class="login-header">
-                    <div class="login-icon">
+                    {{-- <div class="login-icon">
                         <i class="fas fa-lock"></i>
-                    </div>
+                    </div> --}}
                     <h2>Selamat Datang Kembali!</h2>
                     <p>Masuk ke akun administrator Anda</p>
                 </div>
@@ -94,7 +96,6 @@
                 <form id="loginForm" method="POST" action="{{ route('login') }}" class="login-form">
                     @csrf
 
-                    <!-- Alert Container (will be populated via JS on error) -->
                     <div id="alertContainer"></div>
 
                     <!-- Username -->

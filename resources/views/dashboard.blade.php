@@ -349,6 +349,41 @@
         </script>
     @endif
 
+    <script>
+        // Logout confirmation using SweetAlert2
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.btn-logout, .logout-link').forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = e.currentTarget;
+                    const form = target.closest('form') || document.getElementById('logout-form');
+
+                    Swal.fire({
+                        title: 'Konfirmasi Keluar',
+                        text: 'Apakah Anda yakin ingin keluar?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ef4444',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Logout',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            if (form) {
+                                form.submit();
+                            } else if (target.tagName === 'A' && target.href) {
+                                window.location = target.href;
+                            } else {
+                                const f = document.getElementById('logout-form');
+                                if (f) f.submit();
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
     <!-- Scripts -->
     <script>
         // Delete Confirmation
