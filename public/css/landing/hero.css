@@ -39,7 +39,9 @@
     color: var(--color-dark);
     opacity: 0;
     transform: translateX(-30px);
-    will-change: transform, opacity;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 .hero-badge {
@@ -142,7 +144,9 @@
     height: 600px;
     opacity: 0;
     transform: translateX(30px);
-    will-change: transform, opacity;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Full-bleed hero image used in the landingpage hero (no decorations) */

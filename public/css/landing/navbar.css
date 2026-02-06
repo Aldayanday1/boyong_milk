@@ -9,7 +9,9 @@
     width: 100%;
     z-index: var(--z-fixed);
     opacity: 0;
-    transition: opacity var(--transition-base), background var(--transition-base), backdrop-filter var(--transition-base), box-shadow var(--transition-base);
+    will-change: opacity;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Navbar visible state (triggered on page load) */
@@ -18,6 +20,7 @@
 }
 
 .navbar.scrolled {
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);

@@ -83,22 +83,22 @@
         <div class="hero-container">
             <!-- Left: Content -->
             <div class="hero-content">
-                <div class="hero-badge fade-up">
+                <div class="hero-badge">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Padukuhan Boyong, Sleman, DIY</span>
                 </div>
 
-                <h1 class="hero-title fade-up">
+                <h1 class="hero-title">
                     Susu Segar <span class="hero-title-highlight">Berkualitas</span><br>
                     Dari Padukuhan Boyong
                 </h1>
 
-                <p class="hero-subtitle fade-up">
+                <p class="hero-subtitle">
                     Nikmati kesegaran susu dan es krim berkualitas tinggi yang diproduksi langsung dari peternakan lokal
                     kami. 100% segar, alami, dan bergizi untuk keluarga Indonesia.
                 </p>
 
-                <div class="hero-cta fade-up">
+                <div class="hero-cta">
                     <a href="#produk" class="hero-btn hero-btn-primary">
                         <span>Lihat Produk</span>
                         <i class="fas fa-arrow-right"></i>
@@ -111,7 +111,7 @@
             </div>
 
             <!-- Right: Full hero image (shepi-3) - replaced inline SVG -->
-            <div class="hero-visual fade-up" aria-hidden="false">
+            <div class="hero-visual" aria-hidden="false">
                 <img src="{{ asset('images/shepi-3.png') }}" alt="Padukuhan Boyong" class="hero-visual-image">
             </div>
         </div>

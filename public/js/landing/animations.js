@@ -16,106 +16,93 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageLoader = document.querySelector('.page-loader');
     if (pageLoader) {
         window.addEventListener('load', () => {
-            // Fade in navbar while fading out loader
+            // Lock body rendering during animation
+            document.body.style.overflow = 'hidden';
+            
+            // Master timeline for ultra-smooth synchronized animations
+            const masterTL = gsap.timeline({ paused: false });
+            
+            // Get all elements
             const navbar = document.querySelector('.navbar');
+            const heroContent = document.querySelector('.hero-content');
+            const heroVisual = document.querySelector('.hero-visual');
+            
+            // AGGRESSIVE GPU acceleration + rendering lock
+            gsap.set([heroContent, heroVisual, navbar], { 
+                force3D: true,
+                transformOrigin: '50% 50%',
+                will: 'transform, opacity'
+            });
+            
+            // Lock initial states HARD (prevent any paint/layout operations)
+            gsap.set(heroContent, { 
+                autoAlpha: 0, 
+                x: -30,
+                position: 'relative',
+                zIndex: 1
+            });
+            
+            gsap.set(heroVisual, { 
+                autoAlpha: 0, 
+                x: 30,
+                position: 'relative',
+                zIndex: 1
+            });
+            
             if (navbar) {
-                gsap.to(navbar, {
-                    opacity: 1,
-                    duration: 0.6,
-                    ease: 'power2.inOut'
+                gsap.set(navbar, { 
+                    autoAlpha: 0,
+                    position: 'fixed',
+                    zIndex: 9999
                 });
-                navbar.classList.add('visible');
             }
             
-            gsap.to(pageLoader, {
+            // PHASE 1: Loader fade-out (0s - 0.7s)
+            masterTL.to(pageLoader, {
                 opacity: 0,
-                duration: 0.5,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    pageLoader.classList.add('hidden');
-                    // Ensure ScrollTrigger and hero animations initialize after loader is hidden
-                    // small timeout to allow DOM/reflow to settle
-                    // Wait a little longer and use rAF to ensure layout/compositing layers settle
-                    const startHeroSequence = () => {
-                        // two rAFs help ensure style/layout has settled
-                        requestAnimationFrame(() => requestAnimationFrame(() => {
-                            try {
-                                ScrollTrigger.refresh();
-                            } catch (e) {
-                                // ignore if ScrollTrigger not available
-                            }
-
-                            const heroContent = document.querySelector('.hero-content');
-                            const heroVisual = document.querySelector('.hero-visual');
-                            const heroCowBg = document.querySelector('.hero-cow-bg');
-                            const heroImage = document.querySelector('.hero-image');
-                            const floatingCards = document.querySelectorAll('.hero-floating-card');
-
-                            // ensure initial states are set on composite layer
-                            if (heroContent) {
-                                gsap.set(heroContent, { autoAlpha: 0, x: -30, force3D: true });
-                            }
-
-                            if (heroVisual) {
-                                gsap.set(heroVisual, { autoAlpha: 0, x: 30, force3D: true });
-                            }
-
-                            if (heroCowBg) {
-                                gsap.set(heroCowBg, { autoAlpha: 0, scale: 0.95, force3D: true });
-                            }
-
-                            if (heroImage) {
-                                gsap.set(heroImage, { autoAlpha: 0, scale: 0.95, force3D: true });
-                            }
-
-                            if (floatingCards && floatingCards.length > 0) {
-                                gsap.set(floatingCards, { autoAlpha: 0, y: 10, force3D: true });
-                            }
-
-                            const heroTL = gsap.timeline({ defaults: { duration: 0.85, ease: 'power3.out' } });
-
-                            // Semua elemen muncul bersamaan (left content + right visual + semua child nya)
-                            if (heroContent) {
-                                heroTL.to(heroContent, { autoAlpha: 1, x: 0 });
-                            }
-
-                            if (heroVisual) {
-                                heroTL.to(heroVisual, { autoAlpha: 1, x: 0 }, '<');
-                            }
-
-                            // bg cow, main image, dan floating cards muncul bersamaan dengan heroVisual
-                            if (heroCowBg) {
-                                heroTL.to(heroCowBg, { autoAlpha: 0.04, scale: 1, duration: 0.85, ease: 'power3.out' }, '<');
-                            }
-
-                            if (heroImage) {
-                                heroTL.to(heroImage, { autoAlpha: 1, scale: 1, duration: 0.85, ease: 'power3.out' }, '<');
-                            }
-
-                            if (floatingCards && floatingCards.length > 0) {
-                                heroTL.to(floatingCards, { autoAlpha: 1, y: 0, stagger: 0, duration: 0.85, ease: 'power3.out' }, '<');
-                            }
-
-                            // after entrance finishes, kick off the continuous floating loops
-                            heroTL.call(() => {
-                                if (floatingCards && floatingCards.length > 0) {
-                                    floatingCards.forEach((card, index) => {
-                                        gsap.to(card, {
-                                            y: -18,
-                                            duration: 2 + (index * 0.45),
-                                            ease: 'sine.inOut',
-                                            repeat: -1,
-                                            yoyo: true,
-                                            force3D: true
-                                        });
-                                    });
-                                }
-                            });
-                        }));
-                    };
-
-                    // small delay to ensure images/fonts/layout finish; 100ms is typically enough
-                    setTimeout(startHeroSequence, 100);
+                pointerEvents: 'none',
+                duration: 0.7,
+                ease: 'power1.inOut'
+            }, 0);
+            
+            // PHASE 2: Navbar fade-in parallel (0s - 0.9s)
+            if (navbar) {
+                masterTL.to(navbar, {
+                    autoAlpha: 1,
+                    duration: 0.9,
+                    ease: 'power2.out'
+                }, 0);
+                
+                masterTL.call(() => {
+                    navbar.classList.add('visible');
+                }, null, 0);
+            }
+            
+            // PHASE 3: Hero content entrance (0.3s - 1.7s, total 1.4s duration)
+            masterTL.to(heroContent, {
+                autoAlpha: 1,
+                x: 0,
+                duration: 1.4,
+                ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+            }, 0.3);
+            
+            // PHASE 4: Hero visual entrance (0.3s - 1.7s, same timing as content for perfect sync)
+            masterTL.to(heroVisual, {
+                autoAlpha: 1,
+                x: 0,
+                duration: 1.4,
+                ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+            }, 0.3);
+            
+            // On completion: cleanup and unlock
+            masterTL.call(() => {
+                pageLoader.classList.add('hidden');
+                pageLoader.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                try {
+                    ScrollTrigger.refresh();
+                } catch (e) {
+                    // ignore
                 }
             });
         });
