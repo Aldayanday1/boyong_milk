@@ -110,24 +110,9 @@
                 </div>
             </div>
 
-            <!-- Right: Redesigned visual - single large SVG icon -->
-            <div class="hero-visual hero-visual-redesign fade-up" aria-hidden="false">
-                <div class="hero-icon-container" role="img" aria-label="Ikon susu Boyong">
-                    <!-- Simple modern milk bottle SVG icon (single-stroke friendly) -->
-                    <svg class="hero-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M22 6h20v6h-20z" />
-                        <path d="M28 12v6" />
-                        <path d="M36 12v6" />
-                        <rect x="18" y="18" width="28" height="36" rx="6" ry="6" />
-                        <path d="M26 28c2-4 6-6 12-6s10 2 12 6" />
-                        <path d="M24 44c3 1.5 6 2.5 8 2.5s5-1 8-2.5" />
-                    </svg>
-                </div>
-
-                <div class="hero-visual-caption">
-                    <h4>100% Lokal & Segar</h4>
-                    <p>Produk alami langsung dari Padukuhan Boyong</p>
-                </div>
+            <!-- Right: Full hero image (shepi-3) - replaced inline SVG -->
+            <div class="hero-visual fade-up" aria-hidden="false">
+                <img src="{{ asset('images/shepi-3.png') }}" alt="Padukuhan Boyong" class="hero-visual-image">
             </div>
         </div>
 
