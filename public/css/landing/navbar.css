@@ -8,7 +8,13 @@
     left: 0;
     width: 100%;
     z-index: var(--z-fixed);
-    transition: all var(--transition-base);
+    opacity: 0;
+    transition: opacity var(--transition-base), background var(--transition-base), backdrop-filter var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Navbar visible state (triggered on page load) */
+.navbar.visible {
+    opacity: 1;
 }
 
 .navbar.scrolled {

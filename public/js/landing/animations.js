@@ -16,6 +16,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageLoader = document.querySelector('.page-loader');
     if (pageLoader) {
         window.addEventListener('load', () => {
+            // Fade in navbar while fading out loader
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                gsap.to(navbar, {
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: 'power2.inOut'
+                });
+                navbar.classList.add('visible');
+            }
+            
             gsap.to(pageLoader, {
                 opacity: 0,
                 duration: 0.5,
