@@ -709,78 +709,100 @@
                         name: 'Total Stok',
                         data: {!! json_encode($stokPerKategori) !!}
                     }],
+
                     chart: {
                         type: 'area',
-                        height: 300,
-                        width: '95%',
+                        height: 320,
                         toolbar: {
                             show: false
                         },
+
                         animations: {
                             enabled: true,
                             easing: 'easeinout',
-                            speed: 1500,
-                            animateGradually: {
-                                enabled: true,
-                                delay: 400
-                            }
+                            speed: 1200
                         },
-                        redrawOnParentResize: false,
-                        redrawOnWindowResize: false
+
+                        zoom: {
+                            enabled: false
+                        }
                     },
-                    dataLabels: {
-                        enabled: false
-                    },
+
+                    colors: ['#6366f1'],
+
                     stroke: {
                         curve: 'smooth',
-                        width: 3
+                        width: 4
                     },
+
                     fill: {
                         type: 'gradient',
                         gradient: {
                             shadeIntensity: 1,
-                            opacityFrom: 0.7,
-                            opacityTo: 0.2,
-                            stops: [0, 90, 100]
+                            opacityFrom: 0.35,
+                            opacityTo: 0.03,
+                            stops: [0, 100]
                         }
                     },
+
+                    markers: {
+                        size: 5,
+                        strokeWidth: 0,
+                        hover: {
+                            size: 7
+                        }
+                    },
+
+                    dataLabels: {
+                        enabled: false
+                    },
+
                     xaxis: {
                         categories: {!! json_encode($stokKategoriLabels) !!},
+
                         labels: {
+                            rotate: 0,
+
                             style: {
-                                fontSize: '12px',
-                                fontWeight: 500
+                                fontSize: '11px',
+                                fontWeight: 600,
+                                colors: '#6b7280'
                             }
+                        },
+
+                        axisBorder: {
+                            show: false
+                        },
+
+                        axisTicks: {
+                            show: false
                         }
                     },
+
                     yaxis: {
-                        min: 0,
-                        max: 120,
-                        tickAmount: 6,
                         labels: {
                             show: false
                         }
                     },
-                    colors: ['#3b82f6'],
+
                     grid: {
-                        borderColor: '#f3f4f6',
-                        strokeDashArray: 4,
-                        xaxis: {
-                            lines: {
-                                show: false
-                            }
-                        },
-                        yaxis: {
-                            lines: {
-                                show: true
-                            }
+                        borderColor: '#f1f5f9',
+                        strokeDashArray: 5,
+
+                        padding: {
+                            left: 10,
+                            right: 20,
+                            top: 0,
+                            bottom: 0
                         }
                     },
+
                     tooltip: {
                         theme: 'dark',
+
                         y: {
                             formatter: function(val) {
-                                return val + ' unit stok';
+                                return val + ' unit';
                             }
                         }
                     }
