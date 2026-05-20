@@ -112,7 +112,7 @@
 
             <!-- Right: Full hero image (shepi-3) - replaced inline SVG -->
             <div class="hero-visual" aria-hidden="false">
-                <img src="{{ asset('images/shepi-3.png') }}" alt="Padukuhan Boyong" class="hero-visual-image">
+                <img src="{{ asset('images/shepi-3-no-bg.png') }}" alt="Padukuhan Boyong" class="hero-visual-image">
             </div>
         </div>
 
