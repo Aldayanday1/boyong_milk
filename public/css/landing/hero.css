@@ -38,7 +38,7 @@
         transparent 3px
     );
 
-    background-size: 22px 22px;
+    background-size: 27px 27px;
 
     mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
     -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
@@ -58,7 +58,7 @@
         transparent 3px
     );
 
-    background-size: 22px 22px;
+    background-size: 27px 27px;
 
     mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
     -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
