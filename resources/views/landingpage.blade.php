@@ -121,6 +121,8 @@
                 <div class="hero-scroll-dot"></div>
             </div>
         </div>
+
+        <div class="hero-dots hero-dots-left"></div>
     </section>
 
     <!-- About Section -->

@@ -22,6 +22,56 @@
     z-index: 0;
 }
 
+/* Decorative Dots */
+.hero-section::after {
+    content: '';
+    position: absolute;
+
+    width: 620px;
+    height: 420px;
+
+    right: -30px;
+    top: 80px;
+
+    background-image: radial-gradient(
+        rgba(59, 130, 246, 0.15) 3px,
+        transparent 3px
+    );
+
+    background-size: 22px 22px;
+
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
+
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-dots {
+    position: absolute;
+
+    width: 620px;
+    height: 420px;
+
+    background-image: radial-gradient(
+        rgba(59, 130, 246, 0.15) 3px,
+        transparent 3px
+    );
+
+    background-size: 22px 22px;
+
+    mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 45%, transparent 100%);
+
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-dots-left {
+    left: -30px;
+    bottom: 60px;
+}
+
 .hero-container {
     max-width: 1400px;
     margin: 0 auto;
