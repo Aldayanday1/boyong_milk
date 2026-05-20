@@ -71,7 +71,15 @@
 }
 
 .hero-title-highlight {
-    color: var(--color-primary);
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
     position: relative;
     display: inline-block;
 }

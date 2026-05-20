@@ -100,7 +100,11 @@
     display: block;
     font-size: var(--text-4xl);
     font-weight: 800;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -109,7 +113,6 @@
     white-space: nowrap;
     line-height: 1;
     min-height: 1.1em;
-    /* small reserve so changing font-weight doesn't shift layout */
 }
 
 .about-stat-label {
