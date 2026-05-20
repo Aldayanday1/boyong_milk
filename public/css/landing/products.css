@@ -389,7 +389,8 @@ body.modal-open {
 .produk-section {
     margin-top: -2rem;
     padding: var(--spacing-3xl) 0;
-    background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+    /* background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%); */
+    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
     position: relative;
     overflow: hidden;
 }

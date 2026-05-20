@@ -4,7 +4,14 @@
 
 .gallery-section {
     padding: var(--spacing-3xl) 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+
+    background:
+        linear-gradient(
+            180deg,
+            #f0f9ff 0%,
+            #ffffff 100%
+        );
+
     position: relative;
     overflow: hidden;
 }
@@ -12,11 +19,39 @@
 .gallery-section::before {
     content: '';
     position: absolute;
+
     top: -50px;
     right: -50px;
+
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.04), transparent 70%);
+
+    background: radial-gradient(
+        circle,
+        rgba(99, 102, 241, 0.08),
+        transparent 70%
+    );
+
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.gallery-section::after {
+    content: '';
+    position: absolute;
+
+    bottom: -50px;
+    left: -120px;
+
+    width: 580px;
+    height: 580px;
+
+    background: radial-gradient(
+        circle,
+        rgba(59, 130, 246, 0.06),
+        transparent 70%
+    );
+
     border-radius: 50%;
     z-index: 0;
 }

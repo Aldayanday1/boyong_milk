@@ -143,14 +143,17 @@
                     <!-- Statistics -->
                     <div class="about-stats">
                         <div class="about-stat fade-up">
+                            <i class="fas fa-cow about-stat-icon"></i>
                             <span class="about-stat-number">2</span>
                             <span class="about-stat-label">Jenis Susu</span>
                         </div>
                         <div class="about-stat fade-up">
+                            <i class="fas fa-building about-stat-icon"></i>
                             <span class="about-stat-number">1</span>
                             <span class="about-stat-label">Koperasi</span>
                         </div>
                         <div class="about-stat fade-up">
+                            <i class="fas fa-check-circle about-stat-icon"></i>
                             <span class="about-stat-number percent">100</span>
                             <span class="about-stat-label">Murni</span>
                         </div>

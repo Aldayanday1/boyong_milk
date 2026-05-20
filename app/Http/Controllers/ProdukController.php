@@ -7,13 +7,60 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProdukController extends Controller
 {
+    // public function index()
+    // {
+    //     // Get products with pagination for landing page
+    //     $produks = Produk::orderBy('created_at', 'desc')->paginate(6);
+    //     return view('landingpage', compact('produks'));
+    // }
+
     public function index()
     {
-        // Get products with pagination for landing page
-        $produks = Produk::orderBy('created_at', 'desc')->paginate(6);
+        $page = request()->get('page', 1);
+
+        // ID produk yang diprioritaskan
+        $priorityIds = Produk::where('kategori', '=', 'Susu Segar')
+            ->latest()
+            ->take(3)
+            ->pluck('id')
+            ->merge(
+                Produk::where('kategori', '=', 'Es Krim')
+                    ->latest()
+                    ->take(3)
+                    ->pluck('id')
+            );
+
+        // PAGE 1
+        if ($page == 1) {
+
+            $produks = Produk::whereIn('id', $priorityIds)
+                ->get()
+                ->sortBy(function ($item) use ($priorityIds) {
+                    return array_search($item->id, $priorityIds->toArray());
+                });
+
+            $produks = new LengthAwarePaginator(
+                $produks,
+                Produk::count(),
+                6,
+                $page,
+                [
+                    'path' => request()->url(),
+                    'query' => request()->query(),
+                ]
+            );
+        } else {
+
+            // PAGE SELANJUTNYA TANPA DUPLIKAT
+            $produks = Produk::whereNotIn('id', $priorityIds)
+                ->latest()
+                ->paginate(6);
+        }
+
         return view('landingpage', compact('produks'));
     }
 
