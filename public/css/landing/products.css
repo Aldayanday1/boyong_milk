@@ -70,67 +70,6 @@ body.modal-open {
     transform: scale(1.08);
 }
 
-.produk-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(0, 0, 0, 0.4) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.produk-card-modern:hover .produk-overlay {
-    opacity: 1;
-}
-
-/* Status Badge */
-.produk-badge-modern {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    z-index: 2;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.produk-badge-modern i {
-    font-size: 10px;
-}
-
-.produk-badge-modern.tersedia {
-    background: #10b981;
-    color: #ffffff;
-}
-
-.produk-badge-modern.habis {
-    background: #ef4444;
-    color: #ffffff;
-}
-
-.produk-badge-modern.pre_order {
-    background: #f97316;
-    color: #ffffff;
-}
-
-.produk-card-modern:hover .produk-badge-modern {
-    transform: scale(1.05);
-}
-
 /* Content Section */
 .produk-content-modern {
     padding: 24px;
@@ -138,6 +77,15 @@ body.modal-open {
     flex-direction: column;
     gap: 16px;
     flex: 1;
+}
+
+.produk-meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-bottom: 14px;
 }
 
 /* Category Badge */
@@ -157,6 +105,52 @@ body.modal-open {
 
 .produk-category-modern i {
     font-size: 11px;
+}
+
+.produk-status-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    letter-spacing: .3px;
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.08),
+        0 4px 18px rgba(0,0,0,0.08);
+}
+
+/* AVAILABLE */
+.produk-status-inline.tersedia {
+    background: rgba(16, 185, 129, 0.14);
+    color: #10b981;
+}
+
+/* SOLD OUT */
+.produk-status-inline.habis {
+    background: rgba(239, 68, 68, 0.14);
+    color: #ef4444;
+}
+
+/* PREORDER */
+.produk-status-inline.pre_order {
+    background: rgba(249, 115, 22, 0.14);
+    color: #f97316;
+}
+
+.produk-status-inline i {
+    font-size: 10px;
 }
 
 /* Product Title */

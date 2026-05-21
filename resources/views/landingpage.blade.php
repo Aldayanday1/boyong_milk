@@ -325,7 +325,7 @@
                             <div class="produk-image-modern">
                                 <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama }}"
                                     loading="lazy">
-                                <div class="produk-overlay">
+                                {{-- <div class="produk-overlay">
                                     <div class="produk-badge-modern {{ strtolower($produk->status_produk) }}">
                                         @if ($produk->status_produk == 'tersedia')
                                             <i class="fas fa-check-circle"></i> Tersedia
@@ -335,15 +335,32 @@
                                             <i class="fas fa-clock"></i> Pre-Order
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <!-- Content Section -->
                             <div class="produk-content-modern">
-                                <!-- Category with Icon -->
-                                <div class="produk-category-modern">
-                                    <i class="fas fa-tag"></i>
-                                    <span>{{ ucfirst($produk->kategori) }}</span>
+                                <!-- Category + Status -->
+                                <div class="produk-meta-top">
+
+                                    <div class="produk-category-modern">
+                                        <i class="fas fa-tag"></i>
+                                        <span>{{ ucfirst($produk->kategori) }}</span>
+                                    </div>
+
+                                    <div class="produk-status-inline {{ strtolower($produk->status_produk) }}">
+                                        @if ($produk->status_produk == 'tersedia')
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>Tersedia</span>
+                                        @elseif($produk->status_produk == 'habis')
+                                            <i class="fas fa-times-circle"></i>
+                                            <span>Habis</span>
+                                        @else
+                                            <i class="fas fa-clock"></i>
+                                            <span>Pre-Order</span>
+                                        @endif
+                                    </div>
+
                                 </div>
 
                                 <!-- Product Name (single line with ellipsis) -->
