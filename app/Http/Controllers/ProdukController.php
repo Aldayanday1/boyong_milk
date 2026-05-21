@@ -24,11 +24,13 @@ class ProdukController extends Controller
 
         // ID produk yang diprioritaskan
         $priorityIds = Produk::where('kategori', '=', 'Susu Segar')
+            ->whereIn('status_produk', ['tersedia', 'pre_order'])
             ->latest()
             ->take(3)
             ->pluck('id')
             ->merge(
                 Produk::where('kategori', '=', 'Es Krim')
+                    ->whereIn('status_produk', ['tersedia', 'pre_order'])
                     ->latest()
                     ->take(3)
                     ->pluck('id')
