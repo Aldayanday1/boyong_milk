@@ -70,43 +70,157 @@ class ProdukController extends Controller
         return response()->json($produk);
     }
 
-    public function dashboard()
+    // public function dashboard()
+    // {
+    //     if (!Auth::check()) {
+    //         return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu.');
+    //     }
+
+    //     // Analytics Data
+    //     $totalProduk = Produk::count();
+    //     $produkTersedia = Produk::where('status_produk', 'tersedia')->count();
+    //     $produkHabis = Produk::where('status_produk', 'habis')->count();
+    //     $produkPreOrder = Produk::where('status_produk', 'pre_order')->count();
+    //     // $totalStok = Produk::sum('stok');
+
+    //     // Chart Data - Distribusi per Kategori
+    //     $kategoriData = Produk::selectRaw('kategori, COUNT(*) as total')
+    //         ->groupBy('kategori')
+    //         ->pluck('total')
+    //         ->toArray();
+
+    //     $kategoriLabels = Produk::selectRaw('kategori, COUNT(*) as total')
+    //         ->groupBy('kategori')
+    //         ->pluck('kategori')
+    //         ->toArray();
+
+    //     // Chart Data - Total Stok per Kategori
+    //     $stokPerKategori = Produk::selectRaw('kategori, SUM(stok) as total_stok')
+    //         ->groupBy('kategori')
+    //         ->pluck('total_stok')
+    //         ->toArray();
+
+    //     $stokKategoriLabels = Produk::selectRaw('kategori, SUM(stok) as total_stok')
+    //         ->groupBy('kategori')
+    //         ->pluck('kategori')
+    //         ->toArray();
+
+    //     // Produk list with pagination
+    //     $produks = Produk::orderBy('created_at', 'desc')->paginate(5);
+
+    //     return view('dashboard', compact(
+    //         'produks',
+    //         'totalProduk',
+    //         'produkTersedia',
+    //         'produkHabis',
+    //         'produkPreOrder',
+    //         // 'totalStok',
+    //         'kategoriData',
+    //         'kategoriLabels',
+    //         'stokPerKategori',
+    //         'stokKategoriLabels'
+    //     ));
+    // }
+
+    public function dashboard(Request $request)
     {
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu.');
+            return redirect()->route('login')
+                ->with('error', 'Silahkan login terlebih dahulu.');
         }
 
-        // Analytics Data
+        // =========================
+        // ANALYTICS
+        // =========================
         $totalProduk = Produk::count();
         $produkTersedia = Produk::where('status_produk', 'tersedia')->count();
         $produkHabis = Produk::where('status_produk', 'habis')->count();
         $produkPreOrder = Produk::where('status_produk', 'pre_order')->count();
-        // $totalStok = Produk::sum('stok');
 
-        // Chart Data - Distribusi per Kategori
+        // =========================
+        // CHART DATA
+        // =========================
         $kategoriData = Produk::selectRaw('kategori, COUNT(*) as total')
             ->groupBy('kategori')
             ->pluck('total')
             ->toArray();
-        
+
         $kategoriLabels = Produk::selectRaw('kategori, COUNT(*) as total')
             ->groupBy('kategori')
             ->pluck('kategori')
             ->toArray();
 
-        // Chart Data - Total Stok per Kategori
         $stokPerKategori = Produk::selectRaw('kategori, SUM(stok) as total_stok')
             ->groupBy('kategori')
             ->pluck('total_stok')
             ->toArray();
-        
+
         $stokKategoriLabels = Produk::selectRaw('kategori, SUM(stok) as total_stok')
             ->groupBy('kategori')
             ->pluck('kategori')
             ->toArray();
 
-        // Produk list with pagination
-        $produks = Produk::orderBy('created_at', 'desc')->paginate(5);
+        // =========================
+        // SEARCH
+        // =========================
+        $search = $request->search;
+
+        // =========================
+        // JIKA ADA SEARCH
+        // =========================
+        if ($search) {
+
+            $produks = Produk::where('nama', 'like', "%{$search}%")
+                ->orWhere('kategori', 'like', "%{$search}%")
+                ->orWhere('status_produk', 'like', "%{$search}%")
+                ->latest()
+                ->paginate(5)
+                ->withQueryString();
+        } else {
+
+            // =========================
+            // PRIORITY DEFAULT VIEW
+            // =========================
+            $page = $request->get('page', 1);
+            $perPage = 5;
+
+            $priorityIds = Produk::where('kategori', '=', 'Susu Segar')
+                ->latest()
+                ->take(3)
+                ->pluck('id')
+                ->merge(
+                    Produk::where('kategori', '=', 'Es Krim')
+                        ->latest()
+                        ->take(2)
+                        ->pluck('id')
+                );
+
+            if ($page == 1) {
+
+                $produks = Produk::whereIn('id', $priorityIds)
+                    ->get()
+                    ->sortBy(function ($item) use ($priorityIds) {
+                        return array_search($item->id, $priorityIds->toArray());
+                    })
+                    ->values();
+
+                $produks = new LengthAwarePaginator(
+                    $produks,
+                    Produk::count(),
+                    $perPage,
+                    $page,
+                    [
+                        'path' => request()->url(),
+                        'query' => request()->query(),
+                    ]
+                );
+            } else {
+
+                $produks = Produk::whereNotIn('id', $priorityIds)
+                    ->latest()
+                    ->paginate($perPage);
+            }
+        }
 
         return view('dashboard', compact(
             'produks',
@@ -114,7 +228,6 @@ class ProdukController extends Controller
             'produkTersedia',
             'produkHabis',
             'produkPreOrder',
-            // 'totalStok',
             'kategoriData',
             'kategoriLabels',
             'stokPerKategori',

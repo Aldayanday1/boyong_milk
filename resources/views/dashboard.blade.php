@@ -115,17 +115,6 @@
                         </div>
                     </div>
 
-                    {{-- <!-- Card 4: Total Stok -->
-                    <div class="analytics-card card-purple">
-                        <div class="card-icon">
-                            <i class="fas fa-cubes"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-value">{{ $totalStok }}</h3>
-                            <p class="card-label">Total Stok Item</p>
-                        </div>
-                    </div> --}}
-
                     <!-- Card 4: Stok Pre Order (Warning style) -->
                     <div class="analytics-card card-warning">
                         <div class="card-icon">
@@ -212,15 +201,18 @@
                         <div class="table-header-right">
                             <div class="table-tools">
                                 <!-- Modern Minimal Search -->
-                                <div class="modern-search">
-                                    <i class="fas fa-search table-search-icon" aria-hidden="true"></i>
-                                    <input id="table-search-input" type="search" class="table-search-input"
-                                        placeholder="Cari produk..." aria-label="Cari produk">
-                                    <button id="table-search-clear" type="button" class="table-search-clear"
-                                        aria-label="Bersihkan pencarian" title="Bersihkan">
-                                        <i class="fas fa-times-circle"></i>
-                                    </button>
-                                </div>
+                                <form method="GET" action="{{ route('dashboard') }}">
+                                    <div class="modern-search">
+                                        <i class="fas fa-search table-search-icon"></i>
+
+                                        <input type="search" name="search" class="table-search-input"
+                                            placeholder="Cari produk..." value="{{ request('search') }}">
+
+                                        <button type="submit" class="table-search-clear">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
 
                                 <a href="{{ route('produk.create') }}" class="btn-add-product">
                                     <i class="fas fa-plus" style="font-size:13px;"></i>
